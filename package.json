@@ -1,18 +1,18 @@
 {
-  "name": "slate-bootstrap",
+  "name": "barberskabet",
   "version": "1.0.0-alpha.1",
   "private": true,
-  "author": "Nate Eckerson",
-  "description": "A barebones Slate compatible Shopify theme with Bootstrap 4.",
+  "author": "Klement Johansen",
+  "description": "A custom shopify theme for Barberskabet with Bootstrap 4.",
   "keywords": [
     "shopify",
     "theme"
   ],
-  "bugs": "https://github.com/neckerson/slate-bootstrap/issues",
+  "bugs": "https://github.com/klementj/barberskabet-shopify-theme/issues",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/neckerson/slate-bootstrap.git"
+    "url": "https://github.com/klementj/barberskabet-shopify-theme"
   },
   "devDependencies": {
     "@shopify/slate-tools": "1.0.0-beta.18",
