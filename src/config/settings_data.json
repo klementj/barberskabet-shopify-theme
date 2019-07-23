@@ -1,0 +1,45 @@
+{
+  "current": "Default",
+  "presets": {
+    "Default": {
+      "sections": {
+        "collection-list": {
+          "type": "collection-list",
+          "blocks": {
+            "collection-list-0": {
+              "type": "collection"
+            },
+            "collection-list-1": {
+              "type": "collection"
+            },
+            "collection-list-2": {
+              "type": "collection"
+            }
+          },
+          "block_order": [
+            "collection-list-0",
+            "collection-list-1",
+            "collection-list-2"
+          ]
+        },
+        "featured-collection": {
+          "type": "featured-collection",
+          "settings": {
+            "collection": "frontpage"
+          }
+        },
+        "featured-product": {
+          "type": "featured-product"
+        },
+        "announcement-banner": {
+          "type": "announcement-banner"
+        }
+      },
+      "content_for_index": [
+        "featured-product",
+        "announcement-banner",
+        "featured-collection"
+      ]
+    }
+  }
+}
