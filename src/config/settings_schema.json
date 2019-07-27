@@ -1,13 +1,5 @@
 [
   {
-    "name": "Barberskabet",
-    "theme_name": "Barberskabet theme",
-    "theme_version": "1.0.0",
-    "theme_author": "Klement Johansen",
-    "theme_documentation_url": "https://github.com/klementj/barberskabet-shopify-theme",
-    "theme_support_url": "https://github.com/klementj/barberskabet-shopify-theme/issues"
-  },
-  {
     "name": "Colors",
     "settings": [
       {
