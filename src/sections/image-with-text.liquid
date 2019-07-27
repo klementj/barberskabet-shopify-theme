@@ -8,47 +8,87 @@
   - Text: description of the block
 
   Theme Store optional settings
+  - Bagground color: Color of the sections bagground
   - Button label: label associated with the button
   - Button link: link of the button
 {%- endcomment -%}
 
-<section class="image-with-text">
-  {% capture image_layout %}
-    <div class="image-with-text__image">
-      {% if section.settings.image != blank %}
-        {% include 'responsive-image' with
-          image: section.settings.image,
-          max_width: 545,
-          max_height: 545
-        %}
-      {% else %}
-        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-      {% endif %}
-    </div>
-  {% endcapture %}
-
-  {% if section.settings.layout == 'left' %}
-    {{ image_layout }}
-  {% endif %}
-
-  <div class="image-with-text__text">
-    {% if section.settings.title != blank %}
-      <h2>{{ section.settings.title | escape }}</h2>
-    {% endif %}
-    {% if section.settings.text != blank %}
-      <div>{{ section.settings.text }}</div>
-    {% endif %}
-    {% if section.settings.button_label != blank and section.settings.button_link != blank %}
-      <a href="{{ section.settings.button_link }}">
-        {{ section.settings.button_label | escape }}
-      </a>
-    {% endif %}
+<div style="background-color: {{ section.settings.bg-color }}; color: {{ section.settings.text-color }} ">  
+  <section class="container py-5" >
+      <div id="section-{{ section.id }}--direction" class="row">
+    
+        <!-- Image layout -->
+        <div class="image-with-text__wrapper col-sm text-center">
+          {% if section.settings.image != blank %}
+          {% include 'responsive-image' with
+            image: section.settings.image,
+            img_class: image-with-text__image,
+            max_width: 1140,
+            max_height: 845
+          %}
+          {% else %}
+          {{ 'image' | placeholder_svg_tag: 'img-thumbnail' }}
+          {% endif %}
+        </div>
+    
+      
+        <div class="image-with-text__text col-sm mb-3">
+        {% if section.settings.title != blank %}
+          <h2>{{ section.settings.title | escape }}</h2>
+        {% endif %}
+        {% if section.settings.text != blank %}
+          <div>{{ section.settings.text }}</div>
+        {% endif %}
+        {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+          <a class="btn btn-outline-dark" href="{{ section.settings.button_link }}">
+            {{ section.settings.button_label | escape }}
+          </a>
+        {% endif %}
+        </div>
+        
+      </div>
+    </section>
   </div>
-
-  {% if section.settings.layout == 'right' %}
-    {{ image_layout }}
-  {% endif %}
-</section>
+  
+    
+    {% if section.settings.layout == 'top' %}
+      <style>
+         #section-{{ section.id }}--direction{
+            flex-direction: column;
+         }
+  
+      </style>
+    {% endif %}
+    
+    {% if section.settings.layout == 'bottom' %}
+      <style>
+         #section-{{ section.id }}--direction{
+            flex-direction: column-reverse;
+         }
+         
+         #section-{{ section.id }}--direction>.image-with-text__wrapper {
+           width: 80%;
+           margin: auto;
+         }
+      </style>
+    {% endif %}
+    
+    
+    {% if section.settings.layout == 'right' %}
+      <style>
+         #section-{{ section.id }}--direction{
+            flex-direction: row-reverse;
+         }
+      </style>
+    {% endif %}
+    
+    <style>
+      .image-with-text__image{
+        height: 300px;
+        object-fit: cover;
+      }
+    </style>
+    
 
 {% schema %}
   {
@@ -58,6 +98,18 @@
         "type": "image_picker",
         "id": "image",
         "label": "Image"
+      },
+      {
+        "type": "color",
+        "id": "bg-color",
+        "label": "Bagground color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "text-color",
+        "label": "Text color",
+        "default": "#000000"
       },
       {
         "type": "select",
@@ -72,6 +124,14 @@
           {
             "value": "right",
             "label": "Right"
+          },
+          {
+            "value": "top",
+            "label": "Top"
+          },
+          {
+            "value": "bottom",
+            "label": "Bottom"
           }
         ]
       },
@@ -85,7 +145,7 @@
         "type": "richtext",
         "id": "text",
         "label": "Text",
-        "default": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>"
+        "default": "<p>Barberskabet er stedet for manden, som ser fordelene i at få leveret dagligdagsprodukter i højeste kvalitet. Vi ønsker at give maksimal komfort ved ikke at gå på kompromis med materialerne og ingredienserne i vores produkter.</p>"
       },
       {
         "type": "text",

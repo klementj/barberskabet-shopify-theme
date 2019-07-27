@@ -1,4 +1,4 @@
-<div class="banner-image jumbotron-fluid lazyload d-flex justify-content-center"
+<div class="banner-image jumbotron-fluid lazyload d-flex justify-content-center py-5"
       {% if section.settings.overlay_color != 'rgba(0,0,0,0)' %}
         data-bgprefix="linear-gradient({{ section.settings.overlay_color |
         color_modify: 'alpha', 0.35}}, {{ section.settings.overlay_color |
@@ -19,12 +19,12 @@
       <h2 class="display-4">{{ section.settings.title | escape }}</h2>
       {% endif %}
       {% if section.settings.text != blank %}
-      <h3>{{ section.settings.text }}</h3>
+      <p>{{ section.settings.text }}</p>
       {% endif %}
     </div>
     <div class="col">
       {% if section.settings.button_label != blank and section.settings.button_link != blank %}
-        <a class="btn btn-primary btn-lg mt-3" href="{{ section.settings.button_link }}">
+        <a class="btn btn-primary mt-3" href="{{ section.settings.button_link }}">
           {{ section.settings.button_label | escape }}
         </a>
       {% endif %}

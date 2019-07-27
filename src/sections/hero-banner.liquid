@@ -4,10 +4,9 @@
   {% assign hero_image = 'placeholder-svg' %}
 {% endif %}
 
-{% include 'responsive-image' with image: hero_image, max_width: 768, wrapper_class: 'd-md-none' %}
+<!-- {% include 'responsive-image' with image: hero_image, max_width: 768, wrapper_class: 'd-md-none' %} -->
 
-<div class="hero-image jumbotron-fluid lazyload d-flex justify-content-center
-     mb-3 mb-sm-0"
+<div class="hero-image jumbotron-fluid lazyload d-flex justify-content-center mb-sm-0 py-5"
       {% if section.settings.overlay_color != 'rgba(0,0,0,0)' %}
         data-bgprefix="linear-gradient({{ section.settings.overlay_color |
         color_modify: 'alpha', 0.35}}, {{ section.settings.overlay_color |
@@ -23,13 +22,13 @@
       <h1 class="display-4">{{ section.settings.title | escape }}</h1>
       {% endif %}
       {% if section.settings.text != blank %}
-      <h2 class="">{{ section.settings.text }}</h2>
+      <p class="">{{ section.settings.text }}</p>
       {% endif %}
     </div>
     <div class="col mt-3 mt-md-5">
       {% if section.settings.button_label_1 != blank and
         section.settings.button_link_1 != blank %}
-        <a class="btn btn-secondary btn-lg
+        <a class="btn btn-outline-light
         {% if section.settings.button_label_2 != blank and
           section.settings.button_link_2 != blank %} mr-3
          {% endif %}"
@@ -39,7 +38,7 @@
       {% endif %}
       {% if section.settings.button_label_2 != blank and
         section.settings.button_link_2 != blank %}
-        <a class="btn btn-primary btn-lg" href="{{
+        <a class="btn btn-outline-light" href="{{
                   section.settings.button_link_2 }}">
           {{ section.settings.button_label_2 | escape }}
         </a>
