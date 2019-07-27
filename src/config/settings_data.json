@@ -3,42 +3,144 @@
   "presets": {
     "Default": {
       "sections": {
-        "collection-list": {
-          "type": "collection-list",
-          "blocks": {
-            "collection-list-0": {
-              "type": "collection"
-            },
-            "collection-list-1": {
-              "type": "collection"
-            },
-            "collection-list-2": {
-              "type": "collection"
-            }
-          },
-          "block_order": [
-            "collection-list-0",
-            "collection-list-1",
-            "collection-list-2"
-          ]
-        },
-        "featured-collection": {
-          "type": "featured-collection",
+        "hverdagsprodukter": {
+          "type": "hero-banner",
           "settings": {
-            "collection": "frontpage"
+            "image": "shopify:\/\/shop_images\/young-man-in-bright-fashion.jpg",
+            "overlay_color": "#303030",
+            "title": "Hverdagsprodukter til mænd",
+            "text": "",
+            "button_label_1": "Gå til skrabere",
+            "button_link_1": "shopify:\/\/products\/short-sleve-t-shirt",
+            "button_label_2": "Gå til underbukser",
+            "button_link_2": "shopify:\/\/products\/short-sleve-t-shirt"
           }
         },
-        "featured-product": {
-          "type": "featured-product"
+        "hvorfor": {
+          "type": "hooks",
+          "settings": {
+            "heading": "Hvorfor vælge Barberskabet?",
+            "heading_1": "Kvalitet",
+            "image_1": "shopify:\/\/shop_images\/contact-us-lettering.jpg",
+            "text_1": "<p>Vi leverer produkter af højeste kvalitet. Det vedrører alle vores materialer og ingredienser.<\/p>",
+            "heading_2": "Komfort",
+            "image_2": "shopify:\/\/shop_images\/receiving-shipping-box-on-ipad.jpg",
+            "text_2": "<p>Fokus på at din komfort er i fokus ved brug af produkter. Der skal være plads til selvforkælelse i hverdagen.<\/p>",
+            "heading_3": "Innovation",
+            "image_3": "shopify:\/\/shop_images\/wrist-watches.jpg",
+            "text_3": "<p>Vi specialisere os i at forstå netop dine behov som mand og udvikler vores produkter netop til dig.<\/p>"
+          }
         },
         "announcement-banner": {
-          "type": "announcement-banner"
+          "type": "announcement-banner",
+          "settings": {
+            "link-text": "Følg os",
+            "link": "shopify:\/\/collections",
+            "text": "Nu er vi også kommet på instagram og pinterest"
+          }
+        },
+        "barberblade": {
+          "type": "image-with-text",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/hair-scissors-and-razor.jpg",
+            "bg-color": "#ffffff",
+            "text-color": "#000000",
+            "layout": "left",
+            "title": "Barberblade",
+            "text": "<p>Sikrer dig en kontrolleret of effektiv barbering. Skarpere end aldrig f&oslash;r!<\/p>",
+            "button_label": "Gå til barberblade",
+            "button_link": "shopify:\/\/products\/short-sleve-t-shirt"
+          }
+        },
+        "underbukser": {
+          "type": "image-with-text",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/wallhaven-derp-cat.jpg",
+            "bg-color": "#ffffff",
+            "text-color": "#000000",
+            "layout": "right",
+            "title": "Underbukser",
+            "text": "<p>Silkebl&oslash;de og svedabsorberende underbukser. Du har aldrig haft det s&aring; behageligt f&oslash;r!<\/p>",
+            "button_label": "Gå til underbukser",
+            "button_link": "shopify:\/\/products\/short-sleve-t-shirt"
+          }
+        },
+        "sokker": {
+          "type": "image-with-text",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/legs-crossed-cat-socks.jpg",
+            "bg-color": "#ffffff",
+            "text-color": "#000000",
+            "layout": "left",
+            "title": "Sokker",
+            "text": "<p>Aliquam lobortis lacinia felis. Sed consectetur, ligula eu placerat mattis, turpis massa porttitor libero, id laoreet quam neque in augue<\/p>",
+            "button_label": "Gå til sokker",
+            "button_link": "shopify:\/\/products\/short-sleve-t-shirt"
+          }
+        },
+        "om-os": {
+          "type": "image-with-text",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/family-portrait.jpg",
+            "bg-color": "#dbdbdb",
+            "text-color": "#000000",
+            "layout": "bottom",
+            "title": "Om barberskabet",
+            "text": "<p>Barberskabet er stedet for manden, som ser fordelene i at f&aring; leveret dagligdagsprodukter i h&oslash;jeste kvalitet. Vi &oslash;nsker at give maksimal komfort ved ikke at g&aring; p&aring; kompromis med materialerne og ingredienserne i vores produkter.<\/p>",
+            "button_label": "",
+            "button_link": ""
+          }
+        },
+        "barberblade-hero": {
+          "type": "image-banner",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/hair-scissors-and-razor.jpg",
+            "overlay_color": "#333333",
+            "title": "Barberblade",
+            "text": "Start med en prøvepakke til 99 kr.",
+            "button_label": "Send mig prøvepakken",
+            "button_link": "shopify:\/\/products\/short-sleve-t-shirt"
+          }
+        },
+        "trustpilot": {
+          "type": "html",
+          "settings": {
+            "title": "",
+            "text": "<!-- TrustBox widget - Carousel -->\n<div class=\"trustpilot-widget\" data-locale=\"da-DK\" data-template-id=\"53aa8912dec7e10d38f59f36\" data-businessunit-id=\"56b8552e0000ff000588a2a7\" data-style-height=\"130px\" data-style-width=\"100%\" data-theme=\"light\" data-stars=\"1,2,3,4,5\">\n  <a href=\"https:\/\/dk.trustpilot.com\/review\/barberskabet.dk\" target=\"_blank\" rel=\"noopener\">Trustpilot<\/a>\n<\/div>\n<!-- End TrustBox widget -->"
+          }
+        },
+        "graphene": {
+          "type": "rich-text",
+          "settings": {
+            "title": "Hvorfor skal ldu prøve vores grafentech boxershorts?",
+            "text": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.<\/p>"
+          }
+        },
+        "modal": {
+          "type": "image-banner",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Barberskabet_2-344_2.jpg",
+            "overlay_color": "#333333",
+            "title": "MODAL",
+            "text": "Lorem ipsum dolar sit emnet blah dolar sit lorem ipsum",
+            "button_label": "CTA",
+            "button_link": "shopify:\/\/products\/short-sleve-t-shirt"
+          }
         }
       },
       "content_for_index": [
-        "featured-product",
+        "hverdagsprodukter",
+        "hvorfor",
         "announcement-banner",
-        "featured-collection"
+        "barberblade",
+        "underbukser",
+        "sokker",
+        "om-os",
+        "medierne",
+        "barberblade-hero",
+        "trustpilot",
+        "graphene",
+        "modal"
       ]
     }
   }
