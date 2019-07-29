@@ -16,35 +16,37 @@
                          section.settings.overlay_color}}), "
       {% endif %}
      data-bgset="{% include 'responsive-bg-image', image: hero_image %}">
-  <div class="flex-row text-center align-self-center">
-    <div class="col">
-      {% if section.settings.title != blank %}
-      <h1 class="display-4">{{ section.settings.title | escape }}</h1>
-      {% endif %}
-      {% if section.settings.text != blank %}
-      <p class="">{{ section.settings.text }}</p>
-      {% endif %}
-    </div>
-    <div class="col mt-3 mt-md-5">
-      {% if section.settings.button_label_1 != blank and
-        section.settings.button_link_1 != blank %}
-        <a class="btn btn-outline-light
+  <div class="container">
+    <div class="flex-row text-center align-self-center">
+      <div class="col">
+        {% if section.settings.title != blank %}
+        <h1 class="display-4">{{ section.settings.title | escape }}</h1>
+        {% endif %}
+        {% if section.settings.text != blank %}
+        <p class="lead">{{ section.settings.text }}</p>
+        {% endif %}
+      </div>
+      <div class="col mt-2 mt-md-3">
+        {% if section.settings.button_label_1 != blank and
+          section.settings.button_link_1 != blank %}
+          <a class="btn btn-light
+          {% if section.settings.button_label_2 != blank and
+            section.settings.button_link_2 != blank %} mr-3
+           {% endif %}"
+            href="{{ section.settings.button_link_1 }}">
+            {{ section.settings.button_label_1 | escape }}
+          </a>
+        {% endif %}
         {% if section.settings.button_label_2 != blank and
-          section.settings.button_link_2 != blank %} mr-3
-         {% endif %}"
-          href="{{ section.settings.button_link_1 }}">
-          {{ section.settings.button_label_1 | escape }}
-        </a>
-      {% endif %}
-      {% if section.settings.button_label_2 != blank and
-        section.settings.button_link_2 != blank %}
-        <a class="btn btn-outline-light" href="{{
-                  section.settings.button_link_2 }}">
-          {{ section.settings.button_label_2 | escape }}
-        </a>
-      {% endif %}
+          section.settings.button_link_2 != blank %}
+          <a class="btn btn-outline-light" href="{{
+                    section.settings.button_link_2 }}">
+            {{ section.settings.button_label_2 | escape }}
+          </a>
+        {% endif %}
+      </div>
     </div>
-  </div>
+  </div> <!-- .container end -->
 </div>
 
 {% schema %}
