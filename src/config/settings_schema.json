@@ -29,13 +29,13 @@
       {
         "type": "font_picker",
         "id": "font_heading",
-        "default": "helvetica_n4",
+        "default": "roboto_slab_n7",
         "label": "Headings"
       },
       {
         "type": "font_picker",
         "id": "font_body",
-        "default": "helvetica_n4",
+        "default": "roboto_slab_n3",
         "label": "Body text"
       }
     ]
