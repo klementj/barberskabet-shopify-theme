@@ -1,4 +1,4 @@
-<div style="background-color: {{ section.settings.bg-color }}; color: {{ section.settings.text-color }} ">
+<div style="background-color: {{ section.settings.bg-color }}; color: {{ section.settings.text-color }}; fill: {{ section.settings.icon-color }}; stroke: {{ section.settings.icon-color }}">
 <section class="container py-5">
   <!-- Heading -->
   {% if section.settings.heading != blank %}
@@ -9,70 +9,46 @@
     <!-- Hook 1 -->
     <article class="col-md mb-3">
 
-      <!-- Hook Image -->
+      <!-- Hook Icon -->
       <div>
-        {% if section.settings.image_1 != blank %}
-        {% include 'responsive-image' with
-            image: section.settings.image_1,
-        max_width: 545,
-        max_height: 545
-        %}
-        {% else %}
-        {{ 'image' | placeholder_svg_tag: 'img-thumbnail' }}
-        {% endif %}
+        {% include 'icon-quality' %}
       </div>
-
+      
       <!-- Hook Heading -->
       {% if section.settings.heading_1 != blank %}
       <h3 class="text-center">{{ section.settings.heading_1 }}</h3>
       {% endif %}
-
-      <!-- Hook text -->
+      
+      <!-- Hook Text -->
       <div class="text-center">{{ section.settings.text_1 }}</div>
-
+      
     </article>
-
+    
     
     <!-- Hook 2 -->
     <article class="col-md mb-3">
-
-      <!-- Hook Image -->
+      
+      <!-- Hook Icon -->
       <div>
-        {% if section.settings.image_2 != blank %}
-        {% include 'responsive-image' with
-            image: section.settings.image_2,
-        max_width: 545,
-        max_height: 545
-        %}
-        {% else %}
-        {{ 'image' | placeholder_svg_tag: 'img-thumbnail' }}
-        {% endif %}
+        {% include 'icon-comfortable' %}
       </div>
       
       <!-- Hook Heading -->
       {% if section.settings.heading_2 != blank %}
       <h3 class="text-center">{{ section.settings.heading_2 }}</h3>
       {% endif %}
-
-      <!-- Hook text -->
+      
+      <!-- Hook Text -->
       <div class="text-center">{{ section.settings.text_2 }}</div>
-
+      
     </article>
     
     <!-- Hook 3 -->
     <article class="col-md mb-3">
-
-      <!-- Hook Image -->
+      
+      <!-- Hook Icon -->
       <div>
-        {% if section.settings.image_3 != blank %}
-        {% include 'responsive-image' with
-            image: section.settings.image_3,
-        max_width: 545,
-        max_height: 545
-        %}
-        {% else %}
-        {{ 'image' | placeholder_svg_tag: 'img-thumbnail' }}
-        {% endif %}
+        {% include 'icon-flexibility' %}
       </div>
       
       <!-- Hook Heading -->
@@ -90,7 +66,7 @@
 
 {% schema %}
 {
-  "name": "Hooks",
+  "name": "Hooks Why",
   "settings": [
     {
       "type": "text",
@@ -107,9 +83,15 @@
     },
     {
       "type": "color",
+      "id": "icon-color",
+      "label": "Icon color",
+      "default": "#003A3C"
+    },
+    {
+      "type": "color",
       "id": "text-color",
       "label": "Text color",
-      "default": "#000000"
+      "default": "#003A3C"
     },
     {
       "type": "text",
@@ -117,11 +99,6 @@
       "label": "Hook overskrift",
       "default": "Kvalitet",
       "placeholder": "Tilføj en hook overskrift"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_1",
-      "label": "Billede"
     },
     {
       "type": "richtext",
@@ -139,29 +116,17 @@
       "placeholder": "Tilføj en hook overskrift"
     },
     {
-      "type": "image_picker",
-      "id": "image_2",
-      "label": "Billede"
-    },
-    {
       "type": "richtext",
       "id": "text_2",
       "label": "Tekst",
-    "default": "<p>Skriv en kort tekst der forklarer jeres hook</p>"
+      "default": "<p>Skriv en kort tekst der forklarer jeres hook</p>"
     },
-
-
     {
       "type": "text",
       "id": "heading_3",
       "label": "Hook overskrift",
       "default": "Innovation",
       "placeholder": "Tilføj en hook overskrift"
-    },
-    {
-      "type": "image_picker",
-      "id": "image_3",
-      "label": "Billede"
     },
     {
       "type": "richtext",
@@ -172,7 +137,7 @@
   ],
 "presets": [
     {
-      "name": "Hooks",
+      "name": "Hooks-Why",
       "category": "Collection"
     }
   ]
