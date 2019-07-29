@@ -1,0 +1,109 @@
+<nav class="navbar navbar-expand-lg navbar-light" role="navigation">
+  <div class="container">
+
+    <!-- Logo wrapper -->
+    <div role="banner" class="navbar-brand mr-auto">
+      
+      {% if template.name == 'index' %}
+        <h1>
+      {% else %}
+        <div class="h1">
+      {% endif %}
+      
+      <a href="/" class="logo-image text-dark">
+        <!-- {% include 'icon-barberskabet-logo' %} -->
+        {% if section.settings.logo != blank %}
+          {% capture image_size %}{{ section.settings.logo_max_width }}x{% endcapture %}
+          <img src="{{ section.settings.logo | img_url: image_size }}"
+                srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+                alt="{{ section.settings.logo.alt | default: shop.name }}">
+        {% else %}
+          {{ shop.name }}
+        {% endif %}
+      </a>
+      
+      {% if template.name == 'index' %}
+        </h1>
+      {% else %}
+        </div>
+      {% endif %}
+  </div>
+
+  <div class="nav-item order-0 order-lg-3">
+    <div class="d-flex flex-row align-items-center">
+      <a href="/cart">
+        <div class="position-relative btn mr-md-3">
+          {% include 'icon-basket' %}
+          <div class="text-light position-absolute cart-counter-badge">
+            {{ cart.item_count }}
+          </div>
+        </div>
+        {% comment %}
+        {{ 'layout.cart.title' | t }}
+        {% endcomment %}
+      </a>
+    </div>
+  </div>
+
+  <button class="navbar-toggler mr-2 mr-sm-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Mobile navbar -->
+  <div class="collapse navbar-collapse flex-grow-1 w-100" id="navbarSupportedContent">
+    <ul class="nav navbar-nav">
+      {% for link in linklists[section.settings.menu].links %}
+        {% if link.links != blank %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="{{ link.url }}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{ link.title }}
+              {% include 'icon-arrow-down' %}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              {% for childlink in link.links %}
+                <a class="dropdown-item" href="{{ childlink.url }}">
+                  {{ childlink.title }}
+                </a>
+              {% endfor %}
+            </div>
+          </li>
+        {% else %}
+          <li class="ml-1 ml-md-0 nav-item {% if link.active %} active {% endif %}">
+            <a class="nav-link" href="{{ link.url }}">
+              {{ link.title }}
+            </a>
+          </li>
+              <div class="d-lg-none border-top"></div>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+
+  <!-- Customer account -->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    {% if shop.customer_accounts_enabled %}
+      <div class="nav-item">
+        <a href="/account">
+
+          <button type="button" class="ml-1 ml-md-0 d-lg-none btn-lg btn-primary my-2">
+            <span class="text-light">{% include 'icon-user' %}</span>
+              My Account
+          </button>
+
+          <div class="d-none d-lg-block">
+            <div class="row">
+
+              <div class="btn mr-3">
+                <span class="text-dark">{% include 'icon-user' %}</span>
+              </div>
+
+            </div>
+          </div>
+        </a>
+      </div>
+    {% endif %}
+  </div>
+
+  </div> <!-- container -->
+
+</nav>
