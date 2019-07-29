@@ -1,14 +1,12 @@
 @charset 'UTF-8';
 
-/**
- * [Slate Bootstrap Theme v1.0] | Built with Slate
-  */
+// Settings
+// Bootstrap variable overrides
+@import './variables';
 
 // Bootstrap CSS
 @import '~bootstrap/scss/bootstrap';
 
-// Settings
-@import './variables';
 
 // Tools
 @import './tools/mixins';
