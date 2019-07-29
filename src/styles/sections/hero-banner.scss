@@ -1,6 +1,7 @@
 .hero-image {
   height: 600px;
   background-size: cover;
+  background-position: center;
   color: white;
 
   h2 {
@@ -8,10 +9,10 @@
   }
 }
 
-@include media-breakpoint-down(sm) {
-  .hero-image {
-    background-image: none !important;
-    height: 300px;
-    color: black;
-  }
-}
+// @include media-breakpoint-down(sm) {
+//   .hero-image {
+//     background-image: none !important;
+//     height: 300px;
+//     color: black;
+//   }
+// }
