@@ -1,13 +1,13 @@
-html {
-  font-size: 100%;
-}
+// html {
+//   font-size: 100%;
+// }
 
-body {
-  font-family: $font-body;
-  font-weight: $font-body-weight;
-  font-style: $font-body-style;
-  font-size: 1.2rem;
-}
+// body {
+//   font-family: $font-body;
+//   font-weight: $font-body-weight;
+//   font-style: $font-body-style;
+//   font-size: 1.2rem;
+// }
 
 h1,
 h2,
@@ -16,29 +16,32 @@ h4,
 h5,
 h6 {
   font-family: $font-heading;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  word-spacing: 3px;
 }
 
-body,
-input,
-textarea,
-button,
-select {
-  -webkit-font-smoothing: antialiased;
-  text-size-adjust: 100%;
-}
+// body,
+// input,
+// textarea,
+// button,
+// select {
+//   -webkit-font-smoothing: antialiased;
+//   text-size-adjust: 100%;
+// }
 
-a:focus {
-  color: inherit;
-}
+// a:focus {
+//   color: inherit;
+// }
 
-.nav-link {
-  font-weight: 600;
-}
+// .nav-link {
+//   font-weight: 600;
+// }
 
-button,
-.btn {
-  font-weight: 700;
-}
+// button,
+// .btn {
+//   font-weight: 700;
+// }
 
 @include media-breakpoint-down(sm) {
   h2 {
