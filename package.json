@@ -19,6 +19,7 @@
     "eslint": "^5.16.0"
   },
   "scripts": {
+    "upload": "slate-tools build && theme deploy",
     "start": "slate-tools start",
     "watch": "slate-tools start --skipFirstDeploy",
     "build": "slate-tools build",
