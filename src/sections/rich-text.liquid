@@ -8,11 +8,11 @@
 {%- endcomment -%}
 <section class="py-5">
   {%- if section.settings.title != blank -%}
-    <h2>{{ section.settings.title | escape }}</h2>
+    <h2 class="text-center">{{ section.settings.title | escape }}</h2>
   {%- endif -%}
   {%- if section.settings.text != blank -%}
     <div class="row">
-      <div class="col">
+      <div class="col text-center">
         {{ section.settings.text }}
       </div>
     </div>
@@ -22,7 +22,7 @@
 {% schema %}
   {
     "name": "Rich text",
-    "class": "container pt-3",
+    "class": "container",
     "settings": [
       {
         "type": "text",
