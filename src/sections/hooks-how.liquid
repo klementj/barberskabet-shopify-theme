@@ -1,5 +1,5 @@
 <div style="background-color: {{ section.settings.bg-color }}; color: {{ section.settings.text-color }}; fill: {{ section.settings.icon-color }}; stroke: {{ section.settings.icon-color }}">
-<section class="container py-5">
+<section class="container py-3 py-md-4 py-lg-5">
   <!-- Heading -->
   {% if section.settings.heading != blank %}
     <h2 class="text-center mb-4">{{ section.settings.heading }}</h2>
@@ -7,10 +7,10 @@
 
   <div class="row">
     <!-- Hook 1 -->
-    <article class="col-md mb-3">
+    <article class="col-md">
 
       <!-- Hook Icon -->
-      <div>
+      <div class="px-2">
         {% include 'icon-trial' %}
       </div>
       
@@ -20,16 +20,18 @@
       {% endif %}
 
       <!-- Hook Text -->
-      <div class="text-center">{{ section.settings.text_1 }}</div>
+      {% if section.settings.text_1 != blank %}
+        <div class="text-center">{{ section.settings.text_1 }}</div>
+      {% endif %}
 
     </article>
     
     
     <!-- Hook 2 -->
-    <article class="col-md mb-3">
+    <article class="col-md">
       
       <!-- Hook Icon -->
-      <div>
+      <div class="px-2">
         {% include 'icon-calendar' %}
       </div>
       
@@ -39,15 +41,17 @@
       {% endif %}
       
       <!-- Hook Text -->
-      <div class="text-center">{{ section.settings.text_2 }}</div>
+      {% if section.settings.text_2 != blank %}
+        <div class="text-center">{{ section.settings.text_2 }}</div>
+      {% endif %}
 
     </article>
     
     <!-- Hook 3 -->
-    <article class="col-md mb-3">
+    <article class="col-md">
       
       <!-- Hook Icon -->
-      <div>
+      <div class="px-2">
         {% include 'icon-shackle' %}
       </div>
       
@@ -57,7 +61,9 @@
       {% endif %}
 
       <!-- Hook Text -->
-      <div class="text-center">{{ section.settings.text_3 }}</div>
+      {% if section.settings.text_3 != blank %}
+        <div class="text-center">{{ section.settings.text_3 }}</div>
+      {% endif %}
 
     </article>
   </div><!-- end row -->
