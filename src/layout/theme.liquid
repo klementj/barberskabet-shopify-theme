@@ -64,13 +64,17 @@
 
   <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
 
-  {% section 'header' %}
+  {% unless template.suffix contains "landing-page" %}
+    {% section 'header' %}
+  {% endunless %}
 
   <main role="main" id="MainContent">
     {{ content_for_layout }}
   </main>
 
-  {% section 'footer' %}
+  {% unless template.suffix contains "landing-page" %}
+    {% section 'footer' %}
+  {% endunless %}
 
 </body>
 </html>
