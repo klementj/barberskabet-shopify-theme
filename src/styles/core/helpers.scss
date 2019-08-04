@@ -2,6 +2,10 @@
 //   @include clearfix;
 // }
 
+.container-small {
+  max-width: 80ch
+}
+
 .visually-hidden {
   @include visually-hidden;
 }

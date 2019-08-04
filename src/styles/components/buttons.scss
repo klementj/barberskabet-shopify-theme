@@ -25,7 +25,7 @@
 
 .btn-primary {
   // button-variant is pulled in from /boostrap/mixins/_buttons.scss
-  @include button-variant($orange, $orange);
+  // @include button-variant($orange, $orange);
   color: $white;
 }
 
