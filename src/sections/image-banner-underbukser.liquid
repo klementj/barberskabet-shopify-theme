@@ -1,0 +1,66 @@
+<div class="banner-image jumbotron-fluid lazyload d-flex justify-content-center py-3 py-md-4 py-lg-5"
+      {% if section.settings.overlay_color != 'rgba(0,0,0,0)' %}
+        data-bgprefix="linear-gradient({{ section.settings.overlay_color |
+        color_modify: 'alpha', 0.6}}, {{ section.settings.overlay_color |
+        color_modify: 'alpha', 0.6}}), "
+      {% else %}
+        data-bgprefix="linear-gradient({{ section.settings.overlay_color}}, {{
+                         section.settings.overlay_color}}), "
+      {% endif %}
+      {% if section.settings.image != blank %}
+        data-bgset="{% include 'responsive-bg-image', image: section.settings.image %}">
+      {% else %}
+        data-bgset="{% include 'responsive-bg-image', image: 'placeholder-svg' %}">
+      {% endif %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm offset-sm-6">
+        {% if section.settings.title != blank %}
+          <h2>{{ section.settings.title | escape }}</h2>
+        {% endif %}
+        {% if section.settings.text != blank %}
+          <p>{{ section.settings.text }}</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Modal",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "color",
+        "id": "overlay_color",
+        "label": "Banner Color Overlay",
+        "default": "#333333",
+        "info": "This allows you to pick a color to overlay on the banner image"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Banner Text",
+        "default": "Image with text"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>Text for the banner!</p>"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Modal",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

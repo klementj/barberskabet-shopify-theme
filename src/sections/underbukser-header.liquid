@@ -24,7 +24,7 @@
       <div role="banner" style="fill: white; stroke:white;">
         <h1 class="text-center mx-auto" style="max-width: 200px;">  
           <a href="/" class="logo-image" aria-label="Gå til forsiden">
-            {% include 'icon-barberskabet-logo' %}
+            {% include 'icon-barberskabet' %}
           </a>
         </h1>
       </div>
@@ -33,10 +33,10 @@
       <div class="pt-1 pt-md-2 pt-lg-4 flex-row text-center align-self-center">
         <div class="col">
           {% if section.settings.title != blank %}
-          <h1>{{ section.settings.title }}</h1>
+            <h1>{{ section.settings.title }}</h1>
           {% endif %}
           {% if section.settings.text != blank %}
-          <p class="lead">{{ section.settings.text }}</p>
+            <p class="lead">{{ section.settings.text }}</p>
           {% endif %}
         </div>
         <div class="col mt-2 mt-md-3">
@@ -64,8 +64,48 @@
 
 <!-- Floating call-to-action -->
 {% if section.settings.show_call_to_action == true %}
-  <h1>SHOW FLOATING CALL TO ACTION</h1>
+  <div id="floating-cta" class="fixed-top" style="background-color: {{ section.settings.banner_bg }}; color: {{ section.settings.banner_color }}">
+    <div class="container py-2">
+      <div class="d-none d-flex justify-content-between align-items-center">
+
+        <span class="mr-2" style="width: 25px; fill:white;">{% include 'icon-barberskabet-small' %}</span>
+
+        {% if section.settings.title != blank %}
+          <p class="text-right text-uppercase d-none d-md-block flex-fill mb-0 mr-2">{{ section.settings.title }}</p>
+        {% endif %}
+
+        {% if section.settings.button_label_1 != blank and
+          section.settings.button_link_1 != blank %}
+          <a class="btn btn-light
+          {% if section.settings.button_label_2 != blank and
+            section.settings.button_link_2 != blank %} mr-3
+           {% endif %}"
+            href="{{ section.settings.button_link_1 }}">
+            {{ section.settings.button_label_1 | escape }}
+          </a>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
 {% endif %}
+
+{% javascript %}
+  $(window).scroll(function() {
+    let cta = $('#floating-cta')
+    if ( $(this).scrollTop() > 450 ) {
+      cta.fadeIn();
+    } else {
+      cta.fadeOut();
+    }
+  })
+{% endjavascript %}
+
+{% stylesheet %}
+  #floating-cta{
+    display: none;
+  }
+{% endstylesheet %}
 
 {% schema %}
   {
@@ -82,16 +122,6 @@
         "label": "Banner Color Overlay",
         "default": "#000000",
         "info": "This allows you to pick a color to overlay on the banner image"
-      },
-      {
-      "type": "range",
-      "id": "logo_max_width",
-      "min": 50,
-      "max": 450,
-      "step": 10,
-      "unit": "px",
-      "label": "Custom logo width",
-      "default": 250
       },
       {
         "type": "text",
@@ -133,8 +163,22 @@
       {
         "type": "checkbox",
         "id": "show_call_to_action",
-        "label": "Show call to action button",
+        "label": "Show floating call to action",
         "default": false
+      },
+      {
+        "type": "color",
+        "id": "banner_bg",
+        "label": "CTA banner background",
+        "default": "#00686c",
+        "info": "Background color on floating call-to-action"
+      },
+      {
+        "type": "color",
+        "id": "banner_color",
+        "label": "CTA banner text",
+        "default": "#ffffff",
+        "info": "Text color on floating call-to-action"
       }
     ],
     "presets": [

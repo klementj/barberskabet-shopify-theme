@@ -14,7 +14,7 @@
 {%- endcomment -%}
 
 <div style="background-color: {{ section.settings.bg-color }}; color: {{ section.settings.text-color }}">  
-  <section class="container py-3 py-md-4 py-lg-5" >
+  <section class="container container-small py-3 py-md-4 py-lg-5" >
       <div id="section-{{ section.id }}--direction" class="row">
     
         <!-- Image layout -->
@@ -92,7 +92,7 @@
 
 {% schema %}
   {
-    "name": "Image with text",
+    "name": "Fordele ved grafentech",
     "settings": [
       {
         "type": "image_picker",
@@ -115,7 +115,7 @@
         "type": "select",
         "id": "layout",
         "label": "Image alignment",
-        "default": "left",
+        "default": "right",
         "options": [
           {
             "value": "left",
@@ -139,7 +139,7 @@
         "type": "text",
         "id": "title",
         "label": "Heading",
-        "default": "Image with text"
+        "default": "Flere fordele ved vores grafentech boxershorts"
       },
       {
         "type": "richtext",
@@ -160,7 +160,7 @@
     ],
     "presets": [
       {
-        "name": "Image with text",
+        "name": "Fordele ved grafentech",
         "category": "Image"
       }
     ]

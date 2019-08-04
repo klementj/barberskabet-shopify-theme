@@ -2,7 +2,7 @@
 <section class="container py-3 py-md-4 py-lg-5">
   <!-- Heading -->
   {% if section.settings.heading != blank %}
-    <h2 class="text-center mb-4">{{ section.settings.heading }}</h2>
+    <h2 class="text-center mb-2">{{ section.settings.heading }}</h2>
   {% endif %}
 
   <div class="row">
@@ -10,7 +10,7 @@
     <article class="col-md">
 
       <!-- Hook Image -->
-      <div>
+      <div class="px-4">
         {% if section.settings.image_1 != blank %}
           {% include 'responsive-image' with
               image: section.settings.image_1,
@@ -39,7 +39,7 @@
     <article class="col-md">
       
       <!-- Hook Image -->
-      <div>
+      <div class="px-4">
         {% if section.settings.image_2 != blank %}
         {% include 'responsive-image' with
             image: section.settings.image_2,
@@ -67,7 +67,7 @@
     <article class="col-md">
       
       <!-- Hook Image -->
-      <div>
+      <div class="px-4">
         {% if section.settings.image_3 != blank %}
         {% include 'responsive-image' with
             image: section.settings.image_3,

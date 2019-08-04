@@ -13,7 +13,7 @@
   - Button link: link of the button
 {%- endcomment -%}
 
-<div style="background-color: {{ section.settings.bg-color }}; color: {{ section.settings.text-color }}">  
+<div style="background-color: {{ section.settings.bg-color }}; color: {{ section.settings.text-color }} ">  
   <section class="container py-3 py-md-4 py-lg-5" >
       <div id="section-{{ section.id }}--direction" class="row">
     
@@ -92,7 +92,7 @@
 
 {% schema %}
   {
-    "name": "Image with text",
+    "name": "Grafen",
     "settings": [
       {
         "type": "image_picker",
@@ -145,7 +145,7 @@
         "type": "richtext",
         "id": "text",
         "label": "Text",
-        "default": "<p>Barberskabet er stedet for manden, som ser fordelene i at få leveret dagligdagsprodukter i højeste kvalitet. Vi ønsker at give maksimal komfort ved ikke at gå på kompromis med materialerne og ingredienserne i vores produkter.</p>"
+        "default": "<p>Vores boxershorts består af det nyligt udviklede materiale, kaldet grafen, som består af atom-tynde kulstof-flager, og som har mange enestående egenskaber: </p>"
       },
       {
         "type": "text",
@@ -160,7 +160,7 @@
     ],
     "presets": [
       {
-        "name": "Image with text",
+        "name": "Grafen",
         "category": "Image"
       }
     ]

@@ -18,24 +18,66 @@ Removed  data-section-type="product"  from the container div below, because it
 was loading product.js on the index page, resulting in errors.
 {% endcomment %}
 
-<div class="container py-3 py-md-4 py-lg-5" data-section-id="{{ section.id }}">
+<div class="container container-small text-center py-3 py-md-4 py-lg-5" data-section-id="{{ section.id }}">
 
   {% if section.settings.title != blank %}
     <h2 class="display-4 text-center pb-3 border-bottom featured-collection__title">{{ section.settings.title | escape }}</h2>
   {% endif %}
 
-  <div class="row">
-
-    <div class="col-sm order-2 order-md-1">
-      <h3>{{ product.title | default: onboarding_title }}</h3>
+    <div class="mb-2">
+      <h2 class="h1">{{ product.title | default: onboarding_title }}</h2>
 
       {% if section.settings.show_product_description %}
         <div class="rte">
           {{ product.description }}
         </div>
       {% elsif section.settings.description != blank %}
+        <div class="lead">
           {{ section.settings.description }}
+        </div>
       {% endif %}
+
+            <!-- Image slideshow -->
+    <div class="">
+        <div id="carouselFeaturedProduct" class="carousel slide" data-interval="false" data-wrap="false">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselFeaturedProductIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselFeaturedProductIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselFeaturedProductIndicators" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner mx-auto" style="max-width: 500px">
+            {% for image in product.images %}
+  
+              {% capture wrapper_class %}
+                {%- if featured_image == image -%}
+                carousel-item active
+                {%- else -%}
+                carousel-item
+                {%- endif -%}
+              {% endcapture %}
+  
+              {% include 'responsive-image' with
+              image: image,
+              max_width: 540,
+              max_height: 540,
+              wrapper_class: wrapper_class,
+              image_class: "",
+              image_attributes: "data-product-featured-image",
+              wrapper_attributes: "data-product-image-wrapper",
+              %}
+            {% endfor %}
+          </div>
+          <a class="carousel-control-prev" href="#carouselFeaturedProduct" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Forrige billede</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselFeaturedProduct" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Næste billede</span>
+          </a>
+        </div>
+  
+      </div>
 
         <div data-price-wrapper>
           <div class="row">
@@ -52,29 +94,40 @@ was loading product.js on the index page, resulting in errors.
           </div>
           <div class="row">
             <div class="col">
-              <span data-product-price class="money" style="font-size: 1.5em">
+              <span data-product-price class="money mb-2" style="font-size: 1.5em">
                 {{ current_variant.price | default: '1999' | money }}
               </span>
             </div>
           </div>
         </div>
 
-        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-          <label class="btn btn-secondary active">
-            <input type="radio" name="options" id="option1" autocomplete="off" checked> Active
+        <!-- Large modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".storrelse">Large modal</button>
+
+        <div class="modal fade storrelse" tabindex="-1" role="dialog" aria-labelledby="Størrelse" aria-hidden="true">
+          <div class="modal-dialog modal">
+            <div class="modal-content">
+              Whatever der skal stå her...
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-group btn-group-toggle mb-2" data-toggle="buttons">
+          <label class="btn btn-outline-dark">
+            <input type="radio" name="options" id="option1" autocomplete="off" checked> Small
           </label>
-          <label class="btn btn-secondary">
-            <input type="radio" name="options" id="option2" autocomplete="off"> Radio
+          <label class="btn btn-outline-dark">
+            <input type="radio" name="options" id="option2" autocomplete="off"> Medium
           </label>
-          <label class="btn btn-secondary">
-            <input type="radio" name="options" id="option3" autocomplete="off"> Radio
+          <label class="btn btn-outline-dark">
+            <input type="radio" name="options" id="option3" autocomplete="off"> Large
           </label>
         </div>
         
       <div>
 
         <form class="form-group" action="/cart/add" method="post" enctype="multipart/form-data">
-          {% unless product.has_only_default_variant %}
+          <!-- {% unless product.has_only_default_variant %}
             {% for option in product.options_with_values %}
               <div class="selector-wrapper js">
                 <label for="SingleOptionSelector-{{ section.id }}-{{ forloop.index0 }}">
@@ -95,7 +148,7 @@ was loading product.js on the index page, resulting in errors.
                 </select>
               </div>
             {% endfor %}
-          {% endunless %}
+          {% endunless %} -->
 
           <select name="id" class="no-js" data-product-select>
             {% for variant in product.variants %}
@@ -109,30 +162,22 @@ was loading product.js on the index page, resulting in errors.
           </select>
 
           <div class="form-row">
-            <div class="col-4 col-md-2">
-              <label class="col-form-label" for="Quantity-{{ section.id }}">{{
-                'products.product.quantity' | t }}:</label>
-            </div>
-            <div class="col-2 col-md-2">
-              <input class="form-control" type="number" id="Quantity-{{ section.id }}" name="quantity" value="1" min="1">
-            </div>
-            <div class="col col-md-6">
-              <button
-                class="btn btn-primary"
-                type="submit"
-                name="add"
-                data-add-to-cart
-                {% unless product.available %}disabled="disabled"{% endunless %}
-                {% if section_onboarding %}disabled="disabled"{% endif %}>
-                <span data-add-to-cart-text>
-                  {% if product.available %}
-                    {{ 'products.product.add_to_cart' | t }}
-                  {% else %}
-                    {{ 'products.product.sold_out' | t }}
-                  {% endif %}
-                </span>
-              </button>
-            </div>
+            <!-- <button
+              class="btn btn-primary"
+              type="submit"
+              name="add"
+              data-add-to-cart
+              {% unless product.available %}disabled="disabled"{% endunless %}
+              {% if section_onboarding %}disabled="disabled"{% endif %}>
+              <span data-add-to-cart-text>
+                {% if product.available %}
+                  {{ 'products.product.add_to_cart' | t }}
+                {% else %}
+                  {{ 'products.product.sold_out' | t }}
+                {% endif %}
+              </span>
+            </button> -->
+            <button class="btn btn-lg btn-primary mx-auto">Bestil nu</button>
           </div>
         </form>
 
@@ -145,52 +190,22 @@ was loading product.js on the index page, resulting in errors.
       {% endunless %}
     </div>
 
-    <div class="col-sm order-1 order-md-2">
-      <div id="carouselFeaturedProduct" class="carousel slide" data-interval="false" data-wrap="false">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselFeaturedProductIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselFeaturedProductIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselFeaturedProductIndicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-          {% for image in product.images %}
-
-            {% capture wrapper_class %}
-              {%- if featured_image == image -%}
-              carousel-item active
-              {%- else -%}
-              carousel-item
-              {%- endif -%}
-            {% endcapture %}
-
-            {% include 'responsive-image' with
-            image: image,
-            max_width: 540,
-            max_height: 540,
-            wrapper_class: wrapper_class,
-            image_class: "",
-            image_attributes: "data-product-featured-image",
-            wrapper_attributes: "data-product-image-wrapper",
-            %}
-          {% endfor %}
-        </div>
-        <a class="carousel-control-prev" href="#carouselFeaturedProduct" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselFeaturedProduct" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-
-    </div>
   </div>
 </div>
 
+{% stylesheet %}
+.carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
+}
+
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+}
+{% endstylesheet %}
+
 {% schema %}
   {
-    "name": "Featured underbukser",
+    "name": "Prøvepakke",
     "settings": [
       {
         "type": "text",

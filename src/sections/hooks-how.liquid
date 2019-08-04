@@ -2,7 +2,7 @@
 <section class="container py-3 py-md-4 py-lg-5">
   <!-- Heading -->
   {% if section.settings.heading != blank %}
-    <h2 class="text-center mb-4">{{ section.settings.heading }}</h2>
+    <h2 class="text-center mb-3">{{ section.settings.heading }}</h2>
   {% endif %}
 
   <div class="row">
@@ -10,7 +10,7 @@
     <article class="col-md">
 
       <!-- Hook Icon -->
-      <div class="px-2">
+      <div class="px-5 px-md-3">
         {% include 'icon-trial' %}
       </div>
       
@@ -31,7 +31,7 @@
     <article class="col-md">
       
       <!-- Hook Icon -->
-      <div class="px-2">
+      <div class="px-5 px-md-3">
         {% include 'icon-calendar' %}
       </div>
       
@@ -51,7 +51,7 @@
     <article class="col-md">
       
       <!-- Hook Icon -->
-      <div class="px-2">
+      <div class="px-5 px-md-3">
         {% include 'icon-shackle' %}
       </div>
       
@@ -85,26 +85,25 @@
       "type": "color",
       "id": "bg-color",
       "label": "Bagground color",
-      "default": "#ffffff"
+      "default": "#01393d"
     },
     {
       "type": "color",
       "id": "icon-color",
       "label": "Icon color",
-      "default": "#003A3C"
+      "default": "#ffffff"
     },
     {
       "type": "color",
       "id": "text-color",
       "label": "Text color",
-      "default": "#003A3C"
+      "default": "#ffffff"
     },
     {
       "type": "text",
       "id": "heading_1",
       "label": "Hook overskrift",
-      "default": "Prøv i 2 uger",
-      "placeholder": "Tilføj en hook overskrift"
+      "default": "Prøv i 2 uger"
     },
     {
       "type": "richtext",
@@ -118,14 +117,13 @@
       "type": "text",
       "id": "heading_2",
       "label": "Hook overskrift",
-      "default": "Planlæg dine leveringer",
-      "placeholder": "Tilføj en hook overskrift"
+      "default": "Planlæg dine leveringer"
     },
     {
       "type": "richtext",
       "id": "text_2",
       "label": "Tekst",
-    "default": "<p>Skriv en kort tekst der forklarer jeres hook</p>"
+      "default": "<p>Skriv en kort tekst der forklarer jeres hook</p>"
     },
 
 
@@ -133,8 +131,7 @@
       "type": "text",
       "id": "heading_3",
       "label": "Hook overskrift",
-      "default": "Opsig eller ændre når som helst",
-      "placeholder": "Tilføj en hook overskrift"
+      "default": "Ingen binding"
     },
     {
       "type": "richtext",
