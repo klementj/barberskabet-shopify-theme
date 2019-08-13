@@ -18,21 +18,21 @@ Removed  data-section-type="product"  from the container div below, because it
 was loading product.js on the index page, resulting in errors.
 {% endcomment %}
 
-<div class="container container-small text-center py-3 py-md-4 py-lg-5" data-section-id="{{ section.id }}">
+<div class="container container-small text-center py-3 py-md-4" data-section-id="{{ section.id }}">
 
   {% if section.settings.title != blank %}
     <h2 class="display-4 text-center pb-3 border-bottom featured-collection__title">{{ section.settings.title | escape }}</h2>
   {% endif %}
 
-    <div class="mb-2">
+    <div>
       <h2 class="h1">{{ product.title | default: onboarding_title }}</h2>
 
       {% if section.settings.show_product_description %}
-        <div class="rte">
+        <div class="rte mb-2">
           {{ product.description }}
         </div>
       {% elsif section.settings.description != blank %}
-        <div class="lead">
+        <div class="lead mb-2">
           {{ section.settings.description }}
         </div>
       {% endif %}
@@ -104,7 +104,7 @@ was loading product.js on the index page, resulting in errors.
        
 
         <!-- Buttons for size -->
-        <div class="btn-group btn-group-toggle mb-2" data-toggle="buttons">
+        <div class="btn-group btn-group-toggle mb-1" data-toggle="buttons">
           <label class="btn btn-outline-dark">
             <input type="radio" name="options" id="option1" autocomplete="off" checked> Small
           </label>
@@ -143,7 +143,7 @@ was loading product.js on the index page, resulting in errors.
           {% endunless %} -->
 
            <!-- Button trigger modal -->
-<a type="button"  data-toggle="modal" data-target="#exampleModal">
+<a class="mb-2" type="button"  data-toggle="modal" data-target="#exampleModal">
     Hvad er min størrelse?
 </a>
   
@@ -158,7 +158,7 @@ was loading product.js on the index page, resulting in errors.
             </button>
           </div>
         <div class="modal-body">
-          Størrelses guide! Måske med billede som på shaping new tomorrow
+          Størrelses guide!
         </div>
       </div>
     </div>
@@ -191,7 +191,7 @@ was loading product.js on the index page, resulting in errors.
                 {% endif %}
               </span>
             </button> -->
-            <button class="btn btn-lg btn-primary mx-auto">Bestil nu</button>
+            <button id="featuredProductBtn" class="btn btn-lg btn-primary mx-auto">Bestil nu</button>
           </div>
         </form>
 

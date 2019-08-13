@@ -18,7 +18,7 @@ Removed  data-section-type="product"  from the container div below, because it
 was loading product.js on the index page, resulting in errors.
 {% endcomment %}
 
-<div class="container py-3 py-md-4 py-lg-5" data-section-id="{{ section.id }}">
+<div class="container py-3 py-md-4" data-section-id="{{ section.id }}">
 
   {% if section.settings.title != blank %}
     <h2 class="display-4 text-center pb-3 border-bottom featured-collection__title">{{ section.settings.title | escape }}</h2>
