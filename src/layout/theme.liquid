@@ -63,7 +63,9 @@
 <body id="{{ page_title | handle }}" class="template-{{ template.name | handle }}">
 
   <a class="in-page-link visually-hidden skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
-
+  <!-- <h1>
+    {{ template.name }}
+  </h1> -->
   {% unless template.suffix contains "landing-page" %}
     {% section 'header' %}
   {% endunless %}
@@ -72,9 +74,9 @@
     {{ content_for_layout }}
   </main>
 
-  {% unless template.suffix contains "landing-page" %}
+  <!-- {% unless template.suffix contains "landing-page" %} -->
     {% section 'footer' %}
-  {% endunless %}
+  <!-- {% endunless %} -->
 
 </body>
 </html>
