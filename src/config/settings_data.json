@@ -102,7 +102,7 @@
             "button_link": "shopify:\/\/products\/short-sleve-t-shirt"
           }
         },
-        "trustpilot": {
+        "underbukser-trustpilot-lille": {
           "type": "html",
           "settings": {
             "title": "",
@@ -130,6 +130,7 @@
       },
       "content_for_index": [
         "hverdagsprodukter",
+        "underbukser-trustpilot-lille",
         "hvorfor",
         "announcement-banner",
         "barberblade",
@@ -138,7 +139,6 @@
         "om-os",
         "medierne",
         "barberblade-hero",
-        "trustpilot",
         "graphene",
         "modal"
       ]
