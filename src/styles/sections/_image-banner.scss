@@ -1,10 +1,19 @@
 .banner-image {
-  height: 450px;
+  min-height: 450px;
   background-size: cover;
   color: white;
 
   h3 {
     font-family: $font-body;
+  }
+
+  a{
+    color: inherit;
+    text-decoration: underline;
+    
+    &:hover{
+      color: inherit;
+    }
   }
 }
 
