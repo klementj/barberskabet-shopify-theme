@@ -38,16 +38,19 @@
 @import './core/typography';
 
 // Components
+@import './components/logo';
 @import './components/navigation';
 @import './components/placeholders';
 @import './components/buttons';
 @import './components/icons';
 @import './components/responsive-images';
 @import './components/breadcrumbs';
+@import './components/product-variants';
 
 // // Sections
 @import './sections/hero-banner';
 @import './sections/image-banner';
+@import './sections/underbukser-grafen';
 @import './sections/header';
 @import './sections/footer';
 
