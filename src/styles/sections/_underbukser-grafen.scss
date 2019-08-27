@@ -1,0 +1,35 @@
+.banner-image-grafen {
+  min-height: 450px;
+  background-size: cover;
+  color: white;
+
+  h3 {
+    font-family: $font-body;
+  }
+
+  a{
+    color: inherit;
+    text-decoration: underline;
+    
+    &:hover{
+      color: inherit;
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .banner-image-grafen {
+    // height: 250px;
+    background-image: none !important;
+  }
+}
+
+// @include media-breakpoint-down(sm) {
+//   .hero-image {
+//     background-image: none !important;
+//     height: 300px;
+//     color: black;
+//   }
+// }
+
+
