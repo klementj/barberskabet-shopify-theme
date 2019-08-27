@@ -4,11 +4,23 @@
 }
 
 .navbar-light {
-  
+  .navbar-nav {
+    .nav-link {
+      color: hsla(0, 0%, 0%,1)
+    }
+  }
 }
 
 .navbar-dark {
+  .navbar-nav {
+    .nav-link {
+      color: hsla(0,0%,100%,1)
+    }
+  }
+}
 
+.dropdown-toggle::after{
+  margin-left: 0;
 }
 
 // .navbar {
