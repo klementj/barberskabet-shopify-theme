@@ -4,34 +4,39 @@
   {% assign hero_image = 'placeholder-svg' %}
 {% endif %}
 
-<!-- {% include 'responsive-image' with image: hero_image, max_width: 768, wrapper_class: 'd-md-none' %} -->
-
-<div class="hero-image jumbotron-fluid lazyload d-flex justify-content-center mb-sm-0 py-5"
+<div class="d-flex flex-column hero-image jumbotron-fluid lazyload mb-sm-0 pb-5"
       {% if section.settings.overlay_color != 'rgba(0,0,0,0)' %}
         data-bgprefix="linear-gradient({{ section.settings.overlay_color |
-        color_modify: 'alpha', 0.35}}, {{ section.settings.overlay_color |
-        color_modify: 'alpha', 0.35}}), "
+        color_modify: 'alpha', 0.5}}, {{ section.settings.overlay_color |
+        color_modify: 'alpha', 0.5}}), "
       {% else %}
         data-bgprefix="linear-gradient({{ section.settings.overlay_color}}, {{
                          section.settings.overlay_color}}), "
       {% endif %}
-     data-bgset="{% include 'responsive-bg-image', image: hero_image %}">
-  <div class="container">
-    <div class="flex-row text-center align-self-center">
+        data-bgset="{% include 'responsive-bg-image', image: hero_image %}"
+        style="background-color: #01393d;"
+        >
+  
+  {% if template.name == "index" %}
+    {% include 'navigation-hero' %}
+  {% endif %}
+
+  <div class="container d-flex flex-column flex-grow-1 align-self-center justify-content-center">
+    <div class="text-center">
       <div class="col">
         {% if section.settings.title != blank %}
-        <h1 class="display-4">{{ section.settings.title | escape }}</h1>
+        <h2 class="h1">{{ section.settings.title | escape }}</h2>
         {% endif %}
         {% if section.settings.text != blank %}
         <p class="lead">{{ section.settings.text }}</p>
         {% endif %}
       </div>
-      <div class="col mt-2 mt-md-3">
+      <div class="col mt-2 mt-md-3 d-flex align-items-center flex-column flex-md-row justify-content-center">
         {% if section.settings.button_label_1 != blank and
           section.settings.button_link_1 != blank %}
-          <a class="btn btn-light
+          <a class="btn btn-primary
           {% if section.settings.button_label_2 != blank and
-            section.settings.button_link_2 != blank %} mr-3
+            section.settings.button_link_2 != blank %} mr-md-2 mb-2 mb-md-0
            {% endif %}"
             href="{{ section.settings.button_link_1 }}">
             {{ section.settings.button_label_1 | escape }}
@@ -39,9 +44,20 @@
         {% endif %}
         {% if section.settings.button_label_2 != blank and
           section.settings.button_link_2 != blank %}
-          <a class="btn btn-outline-light" href="{{
+          <a class="btn btn-primary
+          {% if section.settings.button_label_3 != blank and
+            section.settings.button_link_3 != blank %} mr-md-2 mb-2 mb-md-0
+          {% endif %}"
+            href="{{
                     section.settings.button_link_2 }}">
             {{ section.settings.button_label_2 | escape }}
+          </a>
+        {% endif %}
+        {% if section.settings.button_label_3 != blank and
+          section.settings.button_link_3 != blank %}
+          <a class="btn btn-primary" href="{{
+                    section.settings.button_link_3 }}">
+            {{ section.settings.button_label_3 | escape }}
           </a>
         {% endif %}
       </div>
@@ -61,47 +77,70 @@
       {
         "type": "color",
         "id": "overlay_color",
-        "label": "Banner Color Overlay",
-        "default": "#333333",
-        "info": "This allows you to pick a color to overlay on the banner image"
+        "label": "Billede overlay farve",
+        "default": "#000000",
+        "info": "Vælg en farve der ligger oven på billeder"
       },
       {
         "type": "text",
         "id": "title",
-        "label": "Banner Text",
-        "default": "Image with text"
+        "label": "Overskrift",
+        "default": "Hverdagsprodukter til mænd",
+        "placeholder": "Hverdagsprodukter til mænd"
       },
       {
         "type": "text",
         "id": "text",
-        "label": "Text",
-        "default": "Text for the banner!"
+        "label": "Tekst",
+        "info": "Tekst til under overskriften"
       },
       {
         "type": "text",
         "id": "button_label_1",
-        "label": "Primary Button label"
+        "label": "Første knap tekst"
       },
       {
         "type": "url",
         "id": "button_link_1",
-        "label": "Primary Button link"
+        "label": "Første knap link"
       },
       {
         "type": "text",
         "id": "button_label_2",
-        "label": "Secondary Button label"
+        "label": "Anden knap tekst"
       },
       {
         "type": "url",
         "id": "button_link_2",
-        "label": "Secondary Button link"
+        "label": "Anden knap link"
+      },
+      {
+        "type": "text",
+        "id": "button_label_3",
+        "label": "Tredje knap tekst"
+      },
+      {
+        "type": "url",
+        "id": "button_link_3",
+        "label": "Tredje knap link"
+      },
+      {
+        "type": "link_list",
+        "id": "menu1",
+        "label": "Venstre Menu",
+        "default": "main-menu"
+      },
+      {
+        "type": "link_list",
+        "id": "menu2",
+        "label": "Højre Menu",
+        "default": "main-menu"
       }
     ],
     "presets": [
       {
         "name": "Hero Banner",
-        "category": "Image"
+        "category": "Call to Action"
       }
     ]
   }
