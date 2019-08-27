@@ -1,6 +1,6 @@
 <div class="container">
   {% if cart.item_count > 0 %}
-    <h1>{{ 'cart.general.title' | t }}</h1>
+    <h2 class="text-center">{{ 'cart.general.title' | t }}</h2>
 
     <form action="/cart" method="post" novalidate>
       <table class="table table-borderless">
@@ -97,14 +97,9 @@
       </table>
 
       <div class="form-row">
-        {% if settings.cart_notes_enable %}
-          <div class="col-md-8 mb-3">
-            <label for="CartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
-            <textarea rows="7" class="form-control" placeholder="Add a note" name="note" id="CartSpecialInstructions">{{ cart.note }}</textarea>
-          </div>
-        {% endif %}
+        
 
-        <div class="col-md-4 mb-3 text-right">
+        <div class="col mb-3 text-right">
           <p id="subtotal" class="cart-money">{{ cart.total_price | money }}</p>
           {% if cart.total_discounts > 0 %}
             <p>{{ 'cart.general.savings' | t }} {{ cart.total_discounts | money }}</p>
@@ -114,24 +109,12 @@
           <button class="btn btn-primary" type="submit" name="update" value="">{{ 'cart.general.update' | t }}</button>
           <button class="btn btn-primary" type="submit" name="checkout" class="button" value="">{{ 'cart.general.checkout' | t }}</button>
 
-          <div class="row">
-            <div class="pt-2 col">
-              <ul class="payment-icons list-inline">
-                {% for type in shop.enabled_payment_types %}
-                  <li class="list-inline-item mr-0 ml-1 pb-1">
-                    {{ type | payment_type_svg_tag: class: 'payment-cc-icon' }}
-                  </li>
-                {% endfor %}
-              </ul>
-            </div>
-          </div>
-
         </div>
       </div>
 
     </form>
   {% else %}
-    <h1>{{ 'cart.general.title' | t }}</h1>
+    <h2>{{ 'cart.general.title' | t }}</h2>
 
     {% comment %}
     Cart empty state
