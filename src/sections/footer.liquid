@@ -1,95 +1,199 @@
-<footer class="bg-dark">
-  <div class="container pt-3 py-md-5">
-    <div class="row">
-        {%- assign footer_linklist = section.settings.footer_linklist -%}
-        {% assign linklist_modulo_three = linklists[footer_linklist].links.size | modulo:3 %}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=773654399457086";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
-        {% if linklists[footer_linklist].links.size > 0 %}
-          {% for link in linklists[footer_linklist].links %}
 
-            {% cycle '<div class="col col-sm-2">', '', '' %}
-              {% cycle '<ul class="list-unstyled">', '', '' %}
-                <li class="m-1"><a class="text-light" href="{{ link.url }}">{{ link.title }}</a></li>
-                {% cycle '', '', '</ul>' %}
-              {% cycle '', '', '</div>' %}
-
-          {% endfor %}
-
-          {% if linklist_modulo_three != 0 %}
-      </div>
-    {% endif %}
-
+<footer class="pt-md-4 pb-2 pt-3 footer" data-section-id="{{ section.id }}" data-section-type="footer" itemscope itemtype="http://schema.org/Organization">
+  {% if section.settings.footer_image %}
+  <a href="/" itemprop="url" class="footer-logo" id="footerLogo" style="opacity:0;">
+    <img src="{{ section.settings.footer_image | img_url: 'x200' }}" alt="{{ section.settings.footer_image.alt | default: shop.name }}" itemprop="logo" id="footerLogoImg-{{ section.id }}"/>
+  </a>
   {% endif %}
-    <div class="col-sm ml-md-5">
-      {%- assign social_accounts = 'Facebook, Twitter, Pinterest, Instagram, Snapchat, Tumblr, YouTube, Vimeo,' | split: ', ' -%}
-      <div class="social-sharing float-md-right">
-        {% for social in social_accounts %}
-          {%- assign social_handle = social | handleize -%}
-          {% capture social_link %}social_{{ social_handle }}_link{% endcapture %}
-          {% capture social_icon %}icon-{{ social_handle }}{% endcapture %}
+  <div class="container">
+    <div class="row">
 
-          {% if settings[social_link] != blank %}
-              <a class="btn btn-secondary mr-1" href="{{ settings[social_link] }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: social }}">
-                <div class="d-flex align-items-center">
-                  {% include social_icon %}
-                  <span class="pl-1">{{ social }}</span>
-                </div>
-              </a>
-          {% endif %}
+      {% case section.blocks.size %}
+        {% when 0 %}
+        {% when 1 %}
+          {% assign footer_column_width = 'col-12' %}
+        {% when 2 %}
+          {% assign footer_column_width = 'col-md-6' %}
+        {% when 3 %}
+          {% assign footer_column_width = 'col-12 col-md-6 col-lg-4' %}
+        {% when 4 %}
+          {% assign footer_column_width = 'col-12 col-md-4 col-lg-3' %}
+      {% endcase %}
 
+      {% for block in section.blocks %}
+        {% case block.type %}
+
+          {% when 'linklist' %}
+            {% assign linklist = linklists[block.settings.linklist] %}
+            <div class="{{ footer_column_width }}" {{ block.shopify_attributes }}>
+              <h5 class="uppercase">{{ linklist.title }}</h5>
+              <hr>
+              <ul class="nav flex-column">
+                {% for link in linklist.links %}
+                  <li class="nav-item"><a class="nav-link" href="{{ link.url }}">{{ link.title }}</a></li>
+                {% endfor %}
+              </ul>
+            </div>
+
+          {% when 'page' %}
+            {% assign page = pages[block.settings.page] %}
+            {% if page == blank or page.empty? %}
+              <div class="{{ footer_column_width }}" {{ block.shopify_attributes }}>
+                <h5 class="uppercase">{{ shop.name }}</h5>
+                <hr>
+                <div class="rte">{{ 'home_page.onboarding.no_content' | t }}</div>
+            </div>
+            {% else %}
+              <div class="{{ footer_column_width }}" {{ block.shopify_attributes }}>
+                <h5 class="uppercase">{{ page.title | escape }}</h5>
+                <hr>
+                <div class="rte">{{ page.content }}</div>
+              </div>
+            {% endif %}
+
+          {% when 'text' %}
+            <div class="{{ footer_column_width }}" {{ block.shopify_attributes }}>
+              <h5 class="uppercase">{{ block.settings.title | escape }}</h5>
+              <hr>
+              <div class="rte">{{ block.settings.text }}</div>
+            </div>
+
+          {% when 'newsletter' %}
+            <div class="{{ footer_column_width }}" {{ block.shopify_attributes }}>
+              <h5 class="uppercase">{{ 'layout.footer.newsletter_title' | t }}</h5>
+              <hr>
+              <p>{{ block.settings.text }}</p>
+              {% include 'newsletter-form' %}
+            </div>
+
+          {% else %}
+        {% endcase %}
+      {% endfor %}
+    </div>
+
+    <div class="text-center">
+      <ul class="inline-list text-uppercase mt-3 footer__menu">
+          <li class="list-inline-item"><a class="nav-link" href="{{ shop.secure_url }}" itemprop="url">&copy; {{ shop.name }} {{ 'now' | date: "%Y" }}</a></li>
+        {% for link in linklists[section.settings.footer_secondary_linklist].links %}
+          <li class="list-inline-item"><a class="nav-link" href="{{ link.url }}">{{ link.title }}</a></li>
         {% endfor %}
-      </div>
-    </div>
+      
+      </ul>
 
-  </div>
-
-  <div class="row pt-3 pt-md-5">
-    <div class="col">
-      <span class="text-secondary">{{ 'layout.footer.copyright' | t }} &copy; {{
-        'now' | date: "%Y" }}, {{ shop.name | link_to: '/' | replace: '<a', '<a
-            class="text-light"' }}.</span>
-    </div>
-  </div>
-
-  <div class="row pt-3 pt-md-5">
-    <div class="col">
-      {% if section.settings.show_payment_icons %}
-        {% unless shop.enabled_payment_types == empty %}
-          <span class="visually-hidden">{{ 'layout.footer.payment_methods' | t }}</span>
-          <ul class="payment-icons list-inline">
-            {% for type in shop.enabled_payment_types %}
-              <li class="list-inline-item">
-                {{ type | payment_type_svg_tag }}
-              </li>
-            {% endfor %}
-          </ul>
-        {% endunless %}
+      {% if section.settings.footer_payment_enable %}
+        <!-- {% unless shop.enabled_payment_types == empty %} -->
+        <ul class="inline-list mt-3">
+          {% for type in shop.enabled_payment_types %}
+            <li class="list-inline-item">
+              {{ type | payment_type_svg_tag: class: 'payment-cc-icon' }}
+            </li>
+          {% endfor %}
+        </ul>
+        <!-- {% endunless %} -->
       {% endif %}
     </div>
   </div>
-
-
-  </div>
-
 </footer>
 
 {% schema %}
-  {
-    "name": "Footer",
-    "settings": [
-      {
-        "type": "link_list",
-        "id": "footer_linklist",
-        "label": "First menu",
-        "default": "footer"
-      },
-      {
-        "type": "checkbox",
-        "id": "show_payment_icons",
-        "label": "Show payment icons",
-        "default": false
-      }
-    ]
-  }
-
+{
+  "name": "Footer",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "label": "Footer logo",
+      "type": "image_picker",
+      "id": "footer_image",
+      "info": "400 x 200px .png"
+    },
+    {
+      "type": "header",
+      "content": "Bottom bar"
+    },
+    {
+      "type": "link_list",
+      "id": "footer_secondary_linklist",
+      "label": "Link List"
+    },
+    {
+      "type": "checkbox",
+      "id": "footer_payment_enable",
+      "label": "Show payment types"
+    },
+    {
+      "type": "checkbox",
+      "id": "footer_social_enable",
+      "label": "Show social icons"
+    }
+  ],
+  "blocks" : [
+    {
+      "type": "linklist",
+      "name": "Link list",
+      "settings": [
+        {
+           "type": "link_list",
+           "id": "linklist",
+           "label": "Link list",
+           "default": "main-menu"
+        }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "name": "Newsletter",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Subscribers are under 'Accepts Marketing' in your [customer admin](/admin/customers).  Sync to Mailchimp with the official [Mailchimp app](https://apps.shopify.com/mailchimp)."
+        },
+        {
+           "type": "textarea",
+           "id": "text",
+           "label": "Newsletter description",
+           "default": "Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals."
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Text column"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Share store details, promotions, or brand content with your customers.</p>"
+        }
+      ]
+    },
+    {
+      "type": "page",
+      "name": "Page",
+      "settings": [
+        {
+          "id": "page",
+          "type": "page",
+          "label": "Page"
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
