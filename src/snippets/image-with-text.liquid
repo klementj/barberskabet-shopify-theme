@@ -1,0 +1,67 @@
+<div style="color: {{ section.settings.text-color }}" class="banner-image-grafen jumbotron-fluid lazyload d-flex justify-content-center py-3 py-md-4"
+  {% if section.settings.overlay_color != 'rgba(0,0,0,0)' %}
+    data-bgprefix="linear-gradient({{ section.settings.overlay_color |
+    color_modify: 'alpha', 0.5}}, {{ section.settings.overlay_color |
+    color_modify: 'alpha', 0.5}}), "
+  {% else %}
+    data-bgprefix="linear-gradient({{ section.settings.overlay_color}}, {{
+                  section.settings.overlay_color}}), "
+  {% endif %} 
+  {% if section.settings.image != blank %}
+    data-bgset="{% include 'responsive-bg-image', image: section.settings.image %}">
+  {% else %}
+    data-bgset="{% include 'responsive-bg-image', image: 'placeholder-svg' %}">
+  {% endif %}
+
+  <!-- <div class=".d-none .d-sm-block .d-md-none">
+      {% if section.settings.image != blank %}
+      {% include 'responsive-image' with
+        image: section.settings.image,
+        img_class: image-with-text__image,
+        max_width: 845,
+        max_height: 845
+      %}
+      {% else %}
+      {{ 'image' | placeholder_svg_tag: 'img-thumbnail' }}
+      {% endif %}
+    </div> -->
+
+  <div class="container">
+    <div class="d-none d-sm-block d-md-none">
+      <div class="row">
+        <div class="col-sm">
+          <!-- Image for mobile device -->
+          {% if section.settings.image != blank %}
+          {% include 'responsive-image' with
+            image: section.settings.image,
+            img_class: image-with-text__image,
+            max_width: 845,
+            max_height: 845
+          %}
+          {% else %}
+          {{ 'image' | placeholder_svg_tag: 'img-thumbnail' }}
+          {% endif %}
+        </div>
+      </div>   
+    </div>
+
+    <div class="row">
+      <div class="col-md offset-md-6">
+        {% if section.settings.title != blank %}
+          <h2>{{ section.settings.title | escape }}</h2>
+        {% endif %}
+        {% if section.settings.text != blank %}
+          <p>{{ section.settings.text }}</p>
+        {% endif %}
+        {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+          <button class="btn btn-primary mt-3" href="{{ section.settings.button_link }}">
+            {{ section.settings.button_label | escape }}
+          </button>
+        {% endif %}
+        {% if section.settings.link_text %}
+          <div class="mt-2">{{ section.settings.link_text }}</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

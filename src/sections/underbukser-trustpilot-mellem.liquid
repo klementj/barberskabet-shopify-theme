@@ -1,0 +1,43 @@
+{%- comment -%}
+  <!-- TrustBox widget - Carousel -->
+    <div class="trustpilot-widget" data-locale="da-DK" data-template-id="53aa8912dec7e10d38f59f36" data-businessunit-id="56b8552e0000ff000588a2a7" data-style-height="130px" data-style-width="100%" data-theme="light" data-stars="1,2,3,4,5">
+      <a href="https://dk.trustpilot.com/review/barberskabet.dk" target="_blank" rel="noopener">Trustpilot</a>
+    </div>
+  <!-- End TrustBox widget -->
+{%- endcomment -%}
+<section class="py-3 py-md-4">
+  {%- if section.settings.title != blank -%}
+    <h2>{{ section.settings.title | escape }}</h2>
+  {%- endif -%}
+  {%- if section.settings.text != blank -%}
+    <div class="row">
+      <div class="col">
+        {{ section.settings.text }}
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+  {
+    "name": "Trustpilot mellem widget",
+    "class": "container",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+      }
+    ],
+    "presets": [{
+        "name": "Trustpilot mellem widget",
+        "category": "Text"
+    }]
+  }
+{% endschema %}

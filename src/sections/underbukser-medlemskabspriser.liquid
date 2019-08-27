@@ -1,0 +1,285 @@
+<div class="row frontpage-section-4" id="trial">
+  <div class="container text-center">
+      <div class="row">
+          <div class="col-md-12">
+              <h2>
+                  {{ section.settings.header }}
+              </h2>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-lg-4 col-sm-8 offset-sm-2 offset-lg-0 mb-3">
+              <div class="plan-box">
+                  <div class="mask-box">
+                      <span class="no-shavers">{{ section.settings.box1-amount}}</span>
+                      {{ 'antal-skraber.png' | asset_url | img_tag: 'Skraber',  'shaver' }}
+                      <div class="corner-ribbon top-left groomee shadow">{{ section.settings.box1-ribbon}}</div>
+                  </div>
+                  <div class="description">{{ section.settings.box1-description }}</div>
+                  <div class="price">{{ section.settings.box1-price }}</div>
+                  <a href="#" class="btn btn-primary buy-button" onclick="addItemToCart({{ section.settings.variant_id1 }}, {{ section.settings.quantity1 }}, {{ section.settings.shipping_interval_frequency1 }}, {{ section.settings.shipping_interval_unit_type1 }}, {{ section.settings.subscription_id1 }}, {{ section.settings.recurring_price1 }}, {{ section.settings.charge_delay1 }})">{{ section.settings.box1-button }}</a>
+              </div>
+          </div>
+          <div class="col-lg-4 col-sm-8 offset-sm-2 offset-lg-0 mb-3">
+              <div class="plan-box">
+                  <div class="mask-box">
+                      <span class="no-shavers">{{ section.settings.box2-amount}}</span>
+                      {{ 'antal-skraber.png' | asset_url | img_tag: 'Skraber',  'shaver' }}
+                      <div class="corner-ribbon top-left groomee shadow">{{ section.settings.box2-ribbon}}</div>
+                  </div>
+                  <div class="description">{{ section.settings.box2-description }}</div>
+                  <div class="price">{{ section.settings.box2-price }}</div>
+                  <a href="#" class="btn btn-primary buy-button" onclick="addItemToCart({{ section.settings.variant_id2 }}, {{ section.settings.quantity2 }}, {{ section.settings.shipping_interval_frequency2 }}, {{ section.settings.shipping_interval_unit_type2 }}, {{ section.settings.subscription_id2 }}, {{ section.settings.recurring_price2 }}, {{ section.settings.charge_delay2 }})">{{ section.settings.box2-button }}</a>
+              </div>
+          </div>
+          <div class="col-lg-4 col-sm-8 offset-sm-2 offset-lg-0 mb-3">
+              <div class="plan-box">
+                  <div class="mask-box">
+                      <span class="no-shavers">{{ section.settings.box3-amount}}</span>
+                      {{ 'antal-skraber.png' | asset_url | img_tag: 'Skraber',  'shaver' }}
+                      <div class="corner-ribbon top-left groomee shadow">{{ section.settings.box3-ribbon}}</div>
+                  </div>
+                  <div class="description">{{ section.settings.box3-description }}</div>
+                  <div class="price">{{ section.settings.box3-price }}</div>
+                  <a href="#" class="btn btn-primary buy-button" onclick="addItemToCart({{ section.settings.variant_id3 }}, {{ section.settings.quantity3 }}, {{ section.settings.shipping_interval_frequency3 }}, {{ section.settings.shipping_interval_unit_type3 }}, {{ section.settings.subscription_id3 }}, {{ section.settings.recurring_price3 }}, {{ section.settings.charge_delay3 }})">{{ section.settings.box3-button }}</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "medlemskabspriser",
+  "settings": [
+      {
+          "type": "text",
+          "id": "header",
+          "label": "Overskrift",
+          "default": "Teksten til overskriften"
+      },
+      {
+          "type": "text",
+          "id": "box1-ribbon",
+          "label": "Venstre boks - bånd",
+          "default": "Hver 2. måned"
+      },
+      {
+          "type": "text",
+          "id": "box1-amount",
+          "label": "Venstre boks - antal blade",
+          "default": "8 X"
+      },
+      {
+          "type": "text",
+          "id": "box1-description",
+          "label": "Venstre boks - beskrivelse",
+          "default": "Jeg barberer mig ca.<br> <b>5-7 gange</b> pr. uge"
+      },
+      {
+          "type": "text",
+          "id": "box1-price",
+          "label": "Venstre boks - pris",
+          "default": "170 kr."
+      },
+      {
+          "type": "text",
+          "id": "box1-button",
+          "label": "Venstre boks - knap",
+          "default": "Vælg hver 2. måned"
+      },
+      {
+          "type": "text",
+          "id": "variant_id1",
+          "label": "Venstre boks Shopify variant ID .json på produktside",
+          "default": "1234567890"
+      },
+      {
+          "type": "text",
+          "id": "quantity1",
+          "label": "Venstre boks antal, må kun være et tal, standard er 1",
+          "default": "1"
+      },
+      {
+          "type": "text",
+          "id": "shipping_interval_frequency1",
+          "label": "Venstre boks interval må kun være tal",
+          "default": "1"
+      },
+      {
+          "type": "text",
+          "id": "shipping_interval_unit_type1",
+          "label": "Venstre boks Gyldige valg er 1 for Month, 2 for Week eller 3 for Day",
+          "default" : "Month"
+      },
+      {
+          "type": "text",
+          "id": "subscription_id1",
+          "label": "Venstre boks subscription id",
+          "default": "123456"
+      },        
+      {
+          "type": "text",
+          "id": "recurring_price1",
+          "label": "Venstre boks recurring pris",
+          "default" : "19.95"
+      },
+      {
+          "type": "text",
+          "id": "charge_delay1",
+          "label": "Venstre boks charge delay",
+          "default": "21"
+      },
+      {
+          "type": "text",
+          "id": "box2-ribbon",
+          "label": "Midterste boks - bånd",
+          "default": "Hver 3. måned"
+      },
+      {
+          "type": "text",
+          "id": "box2-amount",
+          "label": "Midterste boks - antal blade",
+          "default": "8 X"
+      },
+      {
+          "type": "text",
+          "id": "box2-description",
+          "label": "Midterste boks - beskrivelse",
+          "default": "Jeg barberer mig ca.<br> <b>2-4 gange</b> pr. uge"
+      },
+      {
+          "type": "text",
+          "id": "box2-price",
+          "label": "Midterste boks - pris",
+          "default": "180 kr."
+      },
+      {
+          "type": "text",
+          "id": "box2-button",
+          "label": "Midterste boks - knap",
+          "default": "Vælg hver 3. måned"
+      },
+      {
+          "type": "text",
+          "id": "variant_id2",
+          "label": "Midterste boks Shopify variant ID .json på produktside",
+          "default": "1234567890"
+      },
+      {
+          "type": "text",
+          "id": "quantity2",
+          "label": "Midterste boks antal, må kun være et tal, standard er 1",
+          "default": "1"
+      },
+      {
+          "type": "text",
+          "id": "shipping_interval_frequency2",
+          "label": "Midterste boks interval må kun være tal",
+          "default": "1"
+      },
+      {
+          "type": "text",
+          "id": "shipping_interval_unit_type2",
+          "label": "Midterste boks Gyldige valg er 1 for Month, 2 for Week eller 3 for Day",
+          "default" : "Month"
+      },
+      {
+          "type": "text",
+          "id": "subscription_id2",
+          "label": "Midterste boks subscription id",
+          "default": "123456"
+      },
+      {
+          "type": "text",
+          "id": "recurring_price2",
+          "label": "Midterste boks recurring pris",
+          "default" : "20.95"
+      },
+      {
+          "type": "text",
+          "id": "charge_delay2",
+          "label": "Midterste boks charge delay",
+          "default": "21"
+      },
+      {
+          "type": "text",
+          "id": "box3-ribbon",
+          "label": "Højre boks - bånd",
+          "default": "Hver 5. måned"
+      },
+      {
+          "type": "text",
+          "id": "box3-amount",
+          "label": "Højre boks - antal blade",
+          "default": "8 X"
+      },
+      {
+          "type": "text",
+          "id": "box3-description",
+          "label": "Højre boks - beskrivelse",
+          "default": "Jeg barberer mig<br> <b>max 1 gang</b> pr. uge"
+      },
+      {
+          "type": "text",
+          "id": "box3-price",
+          "label": "Højre boks - pris",
+          "default": "190 kr."
+      },
+      {
+          "type": "text",
+          "id": "box3-button",
+          "label": "Højre boks - knap",
+          "default": "Vælg hver 5. måned"
+      },
+      {
+          "type": "text",
+          "id": "variant_id3",
+          "label": "Højre boks Shopify variant ID Shopify variant ID .json på produktside",
+          "default": "1234567890"
+      },
+      {
+          "type": "text",
+          "id": "quantity3",
+          "label": "Højre boks antal, må kun være et tal, standard er 1",
+          "default": "1"
+      },
+      {
+          "type": "text",
+          "id": "shipping_interval_frequency3",
+          "label": "Højre boks interval må kun være tal",
+          "default": "1"
+      },
+      {
+          "type": "text",
+          "id": "shipping_interval_unit_type3",
+          "label": "Højre boks Gyldige valg er 1 for Month, 2 for Week eller 3 for Day",
+          "default" : "Month"
+      },
+      {
+          "type": "text",
+          "id": "subscription_id3",
+          "label": "Højre boks subscription id",
+          "default": "123456"
+      },
+      {
+          "type": "text",
+          "id": "recurring_price3",
+          "label": "Højre boks recurring pris",
+          "default" : "21.95"
+      },
+      {
+          "type": "text",
+          "id": "charge_delay3",
+          "label": "Højre boks charge delay",
+          "default": "21"
+      }
+],
+  "presets": [
+    {
+      "name": "medlemskabspriser",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}

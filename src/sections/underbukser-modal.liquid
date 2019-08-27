@@ -1,0 +1,98 @@
+<div style="color: {{ section.settings.text-color }}" class="banner-image jumbotron-fluid lazyload d-flex justify-content-center py-3 py-md-4"
+      {% if section.settings.overlay_color != 'rgba(0,0,0,0)' %}
+        data-bgprefix="linear-gradient({{ section.settings.overlay_color |
+        color_modify: 'alpha', 0.5}}, {{ section.settings.overlay_color |
+        color_modify: 'alpha', 0.5}}), "
+      {% else %}
+        data-bgprefix="linear-gradient({{ section.settings.overlay_color}}, {{
+                         section.settings.overlay_color}}), "
+      {% endif %}
+      {% if section.settings.image != blank %}
+        data-bgset="{% include 'responsive-bg-image', image: section.settings.image %}">
+      {% else %}
+        data-bgset="{% include 'responsive-bg-image', image: 'placeholder-svg' %}">
+      {% endif %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        {% if section.settings.title != blank %}
+          <h2>{{ section.settings.title | escape }}</h2>
+        {% endif %}
+        {% if section.settings.text != blank %}
+          <p>{{ section.settings.text }}</p>
+        {% endif %}
+        {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+          <button class="btn btn-primary mt-3" href="{{ section.settings.button_link }}">
+            {{ section.settings.button_label | escape }}
+          </button>
+        {% endif %}
+        {% if section.settings.link_text %}
+          <div class="mt-2">{{ section.settings.link_text }}</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% include 'image-with-text' %}
+
+{% schema %}
+  {
+    "name": "Modal",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "color",
+        "id": "overlay_color",
+        "label": "Banner Color Overlay",
+        "default": "#000000",
+        "info": "This allows you to pick a color to overlay on the banner image"
+      },
+      {
+        "type": "color",
+        "id": "text-color",
+        "label": "Text color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Modal"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>Vores grafentech-boxershorts består af det revolutionerende og nyligt udviklede materiale, kaldet grafen. Det består af atom-tynde kulstofflager opbygget i sekskanter, som har mange fordelagtige egenskaber.</p>"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      },
+      {
+        "type": "richtext",
+        "id": "link_text",
+        "label": "Text for link",
+        "default": "<p>Læs mere om Modal her</p>"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Modal",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

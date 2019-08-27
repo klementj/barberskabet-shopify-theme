@@ -1,0 +1,44 @@
+<section class="py-3 py-md-4">
+  <video controls width="250">
+
+    <source src="{{ section.settings.video_url }}"
+            type="video/webm">
+
+    <source src="{{ section.settings.video_url }}"
+            type="video/mp4">
+
+    Sorry, your browser doesn't support embedded videos.
+</video>
+</section> 
+
+{% schema %}
+{
+  "name": "Vimeo video",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading"
+    },
+    {
+      "id": "video_url",
+      "type": "video_url",
+      "label": "Video URL",
+      "accept": ["youtube", "vimeo"],
+      "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+      "info": "Text",
+      "placeholder": "Text"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+    }
+  ],
+  "presets": [{
+      "name": "Vimeo video",
+      "category": "Video"
+  }]
+}
+{% endschema %}

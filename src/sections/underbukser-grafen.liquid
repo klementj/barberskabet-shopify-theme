@@ -1,0 +1,60 @@
+{% include 'image-with-text' %}
+
+{% schema %}
+  {
+    "name": "Grafen",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "color",
+        "id": "overlay_color",
+        "label": "Banner Color Overlay",
+        "info": "This allows you to pick a color to overlay on the banner image"
+      },
+      {
+        "type": "color",
+        "id": "text-color",
+        "label": "Text color",
+        "default": "#000000"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Grafen"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>Vores grafentech-boxershorts består af det revolutionerende og nyligt udviklede materiale, kaldet grafen. Det består af atom-tynde kulstofflager opbygget i sekskanter, som har mange fordelagtige egenskaber.</p>"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      },
+      {
+        "type": "richtext",
+        "id": "link_text",
+        "label": "Text for link",
+        "default": "<p>Læs mere om Grafen her</p>"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Grafen",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}
