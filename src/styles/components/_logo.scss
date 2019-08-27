@@ -1,0 +1,23 @@
+.logo svg{
+  width: 165px;
+}
+
+@include media-breakpoint-up(lg) {
+  
+}
+
+@include media-breakpoint-down(md) {
+  .logo svg{
+    width: 140px;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .logo svg{
+    width: 120px;
+  }
+}
+
+@include media-breakpoint-down(lg) {
+
+}
