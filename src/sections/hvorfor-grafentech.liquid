@@ -7,12 +7,12 @@
   - Text: description of the rich text section
 {%- endcomment -%}
 <div style="background-color: {{ section.settings.bg-color }}; color: {{ section.settings.text-color }}">
-  <section class="container container-small py-3 py-md-4 py-lg-5">
+  <section class="container py-3 py-md-4">
     {%- if section.settings.title != blank -%}
       <h2 class="text-center">{{ section.settings.title | escape }}</h2>
     {%- endif -%}
     {%- if section.settings.text != blank -%}
-      <div class="row">
+      <div class="row mx-auto container-small">
         <div class="col text-center">
           {{ section.settings.text }}
         </div>

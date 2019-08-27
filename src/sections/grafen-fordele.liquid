@@ -14,7 +14,7 @@
 {%- endcomment -%}
 
 <div style="background-color: {{ section.settings.bg-color }}; color: {{ section.settings.text-color }} ">  
-  <section class="container py-3 py-md-4 py-lg-5" >
+  <section class="container py-3 py-md-4" >
       <div id="section-{{ section.id }}--direction" class="row">
     
         <!-- Image layout -->
@@ -40,7 +40,7 @@
           <div>{{ section.settings.text }}</div>
         {% endif %}
         {% if section.settings.button_label != blank and section.settings.button_link != blank %}
-          <a class="btn btn-outline-dark" href="{{ section.settings.button_link }}">
+          <a class="btn btn-primary" href="{{ section.settings.button_link }}">
             {{ section.settings.button_label | escape }}
           </a>
         {% endif %}
