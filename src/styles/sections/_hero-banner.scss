@@ -1,10 +1,15 @@
 .hero-image {
   min-height: 600px;
   background-size: cover;
-  // background-position: center;
   color: white;
 
   h2 {
     font-family: $font-body;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .hero-image {
+    background-position-x: -100px;
   }
 }
