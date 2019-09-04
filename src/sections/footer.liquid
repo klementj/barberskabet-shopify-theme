@@ -20,13 +20,13 @@
       {% case section.blocks.size %}
         {% when 0 %}
         {% when 1 %}
-          {% assign footer_column_width = 'col-12' %}
+          {% assign footer_column_width = 'col-12 mb-3' %}
         {% when 2 %}
-          {% assign footer_column_width = 'col-md-6' %}
+          {% assign footer_column_width = 'col-md-6 mb-3' %}
         {% when 3 %}
-          {% assign footer_column_width = 'col-12 col-md-6 col-lg-4' %}
+          {% assign footer_column_width = 'col-12 col-md-6 col-lg-4 mb-3' %}
         {% when 4 %}
-          {% assign footer_column_width = 'col-12 col-md-4 col-lg-3' %}
+          {% assign footer_column_width = 'col-12 col-md-4 col-lg-3 mb.3' %}
       {% endcase %}
 
       {% for block in section.blocks %}
@@ -81,7 +81,7 @@
     </div>
 
     <div class="text-center">
-      <ul class="inline-list text-uppercase mt-3 footer__menu">
+      <ul class="inline-list text-uppercase footer__menu">
           <li class="list-inline-item"><a class="nav-link" href="{{ shop.secure_url }}" itemprop="url">&copy; {{ shop.name }} {{ 'now' | date: "%Y" }}</a></li>
         {% for link in linklists[section.settings.footer_secondary_linklist].links %}
           <li class="list-inline-item"><a class="nav-link" href="{{ link.url }}">{{ link.title }}</a></li>
