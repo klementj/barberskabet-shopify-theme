@@ -1,0 +1,66 @@
+{% if section.settings.image != blank %}
+  {% assign hero_image = section.settings.image %}
+{% else %}
+  {% assign hero_image = 'placeholder-svg' %}
+{% endif %}
+
+<div class="d-flex flex-column hero-image jumbotron-fluid lazyload mb-sm-0 pb-5"
+      {% if section.settings.overlay_color != 'rgba(0,0,0,0)' %}
+        data-bgprefix="linear-gradient({{ section.settings.overlay_color |
+        color_modify: 'alpha', 0.5}}, {{ section.settings.overlay_color |
+        color_modify: 'alpha', 0.5}}), "
+      {% else %}
+        data-bgprefix="linear-gradient({{ section.settings.overlay_color}}, {{
+                         section.settings.overlay_color}}), "
+      {% endif %}
+        data-bgset="{% include 'responsive-bg-image', image: hero_image %}"
+        style="background-color: #01393d;"
+        >
+  
+  {% if template.name == "index" %}
+    {% include 'navigation-hero' %}
+  {% endif %}
+
+  <div class="container d-flex flex-column flex-grow-1 align-self-center justify-content-center">
+    <div class="text-center">
+      <div class="col">
+        {% if section.settings.title != blank %}
+        <h2 class="h1">{{ section.settings.title | escape }}</h2>
+        {% endif %}
+        {% if section.settings.text != blank %}
+        <p class="lead">{{ section.settings.text }}</p>
+        {% endif %}
+      </div>
+      <div class="col mt-2 mt-md-3 d-flex align-items-center flex-column flex-md-row justify-content-center">
+        {% if section.settings.button_label_1 != blank and
+          section.settings.button_link_1 != blank %}
+          <a class="btn btn-primary
+          {% if section.settings.button_label_2 != blank and
+            section.settings.button_link_2 != blank %} mr-md-2 mb-2 mb-md-0
+           {% endif %}"
+            href="{{ section.settings.button_link_1 }}">
+            {{ section.settings.button_label_1 | escape }}
+          </a>
+        {% endif %}
+        {% if section.settings.button_label_2 != blank and
+          section.settings.button_link_2 != blank %}
+          <a class="btn btn-primary
+          {% if section.settings.button_label_3 != blank and
+            section.settings.button_link_3 != blank %} mr-md-2 mb-2 mb-md-0
+          {% endif %}"
+            href="{{
+                    section.settings.button_link_2 }}">
+            {{ section.settings.button_label_2 | escape }}
+          </a>
+        {% endif %}
+        {% if section.settings.button_label_3 != blank and
+          section.settings.button_link_3 != blank %}
+          <a class="btn btn-primary" href="{{
+                    section.settings.button_link_3 }}">
+            {{ section.settings.button_label_3 | escape }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div> <!-- .container end -->
+</div>
