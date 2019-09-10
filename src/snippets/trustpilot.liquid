@@ -1,12 +1,14 @@
-<section class="py-3 py-md-4">
-    {%- if section.settings.title != blank -%}
-      <h2 class="h3 text-center mb-3">{{ section.settings.title | escape }}</h2>
-    {%- endif -%}
-    {%- if section.settings.text != blank -%}
-      <div class="row">
-        <div class="col">
-          {{ section.settings.text }}
+<div style="background-color: {{ section.settings.bg-color }}; color: {{ section.settings.text-color }} ">
+  <section class="py-3 py-md-4">
+      {%- if section.settings.title != blank -%}
+        <h2 class="h3 text-center mb-3">{{ section.settings.title | escape }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <div class="row">
+          <div class="col">
+            {{ section.settings.text }}
+          </div>
         </div>
-      </div>
-    {%- endif -%}
-  </section>
+      {%- endif -%}
+    </section>
+</div>
