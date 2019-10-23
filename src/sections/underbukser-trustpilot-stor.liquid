@@ -1,4 +1,6 @@
-{% include 'trustpilot' %}
+<div style="background-color: {{ section.settings.bg-color }};">
+  {% include 'trustpilot' %}
+</div>
 
 {% schema %}
   {
@@ -24,7 +26,7 @@
     ],
     "presets": [{
         "name": "Trustpilot stor widget",
-        "category": "Text"
+        "category": "Underbukser"
     }]
   }
 {% endschema %}
