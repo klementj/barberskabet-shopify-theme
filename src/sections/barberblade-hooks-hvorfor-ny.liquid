@@ -1,0 +1,151 @@
+<div style="background-color: {{ section.settings.bg-color }}; color: {{ section.settings.text-color }}; fill: {{ section.settings.icon-color }}; stroke: {{ section.settings.icon-color }}">
+<section class="container py-3 py-md-4">
+  <!-- Heading -->
+  {% if section.settings.heading != blank %}
+    <h2 class="text-center mb-4">{{ section.settings.heading }}</h2>
+  {% endif %}
+
+  <div class="row">
+    <!-- Hook 1 -->
+    <article class="col-md-4" >
+
+      <!-- Hook Icon -->
+      <div class="px-2">
+        {% include 'icon-quality' %}
+      </div>
+      
+      <!-- Hook Heading -->
+      {% if section.settings.heading_1 != blank %}
+        <h3 class="text-center">{{ section.settings.heading_1 }}</h3>
+      {% endif %}
+      
+      <!-- Hook Text -->
+      {% if section.settings.text_1 != blank %}
+        <div class="text-center">{{ section.settings.text_1 }}</div>
+      {% endif %}
+      
+    </article>
+    
+    
+    <!-- Hook 2 -->
+    <article class="col-md-4" >
+      
+      <!-- Hook Icon -->
+      <div class="px-2">
+        {% include 'icon-comfortable' %}
+      </div>
+      
+      <!-- Hook Heading -->
+      {% if section.settings.heading_2 != blank %}
+        <h3 class="text-center">{{ section.settings.heading_2 }}</h3>
+      {% endif %}
+      
+      <!-- Hook Text -->
+      {% if section.settings.text_2 != blank %}
+        <div class="text-center">{{ section.settings.text_2 }}</div>
+      {% endif %}
+      
+    </article>
+    
+    <!-- Hook 3 -->
+    <article class="col-md-4" >
+      
+      <!-- Hook Icon -->
+      <div class="px-2">
+        {% include 'icon-flexibility' %}
+      </div>
+      
+      <!-- Hook Heading -->
+      {% if section.settings.heading_3 != blank %}
+        <h3 class="text-center">{{ section.settings.heading_3 }}</h3>
+      {% endif %}
+
+      <!-- Hook text -->
+      {% if section.settings.text_3 != blank %}
+        <div class="text-center">{{ section.settings.text_3 }}</div>
+      {% endif %}
+
+    </article>
+  </div><!-- end row -->
+</section>
+</div>
+
+{% schema %}
+{
+  "name": "Hooks Why",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Overskrift",
+      "default": "Hvorfor vælge Barberskabet?",
+      "placeholder": "Tekst til overskrift"
+    },
+    {
+      "type": "color",
+      "id": "bg-color",
+      "label": "Bagground color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "icon-color",
+      "label": "Icon color",
+      "default": "#003A3C"
+    },
+    {
+      "type": "color",
+      "id": "text-color",
+      "label": "Text color",
+      "default": "#003A3C"
+    },
+    {
+      "type": "text",
+      "id": "heading_1",
+      "label": "Hook overskrift",
+      "default": "Kvalitet",
+      "placeholder": "Tilføj en hook overskrift"
+    },
+    {
+      "type": "richtext",
+      "id": "text_1",
+      "label": "Tekst",
+      "default": "<p>Skriv en kort tekst der forklarer jeres hook</p>"
+    },
+
+
+    {
+      "type": "text",
+      "id": "heading_2",
+      "label": "Hook overskrift",
+      "default": "Komfort",
+      "placeholder": "Tilføj en hook overskrift"
+    },
+    {
+      "type": "richtext",
+      "id": "text_2",
+      "label": "Tekst",
+      "default": "<p>Skriv en kort tekst der forklarer jeres hook</p>"
+    },
+    {
+      "type": "text",
+      "id": "heading_3",
+      "label": "Hook overskrift",
+      "default": "Innovation",
+      "placeholder": "Tilføj en hook overskrift"
+    },
+    {
+      "type": "richtext",
+      "id": "text_3",
+      "label": "Tekst",
+      "default": "<p>Skriv en kort tekst der forklarer jeres hook</p>"
+    }
+  ],
+"presets": [
+    {
+      "name": "Hooks-Why-ny",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}

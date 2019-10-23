@@ -1,0 +1,163 @@
+<div class="d-block d-md-none">
+  <!-- Image for mobile device -->
+  {% if section.settings.image != blank %}
+  {% include 'responsive-image' with
+    image: section.settings.image,
+    img_class: image-with-text__image,
+    max_width: 845,
+    max_height: 845
+  %}
+  {% else %}
+  {{ 'image' | placeholder_svg_tag: 'img-thumbnail' }}
+  {% endif %}
+</div>
+  
+  <div style="color: {{ section.settings.text-color }}" class="banner-image--hidden jumbotron-fluid lazyload d-flex justify-content-center pt-2 py-md-4"
+    {% if section.settings.overlay_color != 'rgba(0,0,0,0)' %}
+      data-bgprefix="linear-gradient({{ section.settings.overlay_color |
+      color_modify: 'alpha', 0.5}}, {{ section.settings.overlay_color |
+      color_modify: 'alpha', 0.5}}), "
+    {% else %}
+      data-bgprefix="linear-gradient({{ section.settings.overlay_color}}, {{
+                    section.settings.overlay_color}}), "
+    {% endif %} 
+    {% if section.settings.image != blank %}
+      data-bgset="{% include 'responsive-bg-image', image: section.settings.image %}">
+    {% else %}
+      data-bgset="{% include 'responsive-bg-image', image: 'placeholder-svg' %}">
+    {% endif %}
+  
+    <!-- <div class=".d-none .d-sm-block .d-md-none">
+        {% if section.settings.image != blank %}
+        {% include 'responsive-image' with
+          image: section.settings.image,
+          img_class: image-with-text__image,
+          max_width: 845,
+          max_height: 845
+        %}
+        {% else %}
+        {{ 'image' | placeholder_svg_tag: 'img-thumbnail' }}
+        {% endif %}
+      </div> -->
+  
+    <div class="container">
+      <div class="row">
+        <!-- Light text for on image -->
+        <div class="col-md-6 d-none d-md-block
+          {% if section.settings.layout == 'right' %}
+            offset-md-6
+          {% endif %}
+        ">
+          {% if section.settings.title != blank %}
+          <h2>{{ section.settings.title | escape }}</h2>
+          {% endif %}
+          {% if section.settings.text != blank %}
+          <p>{{ section.settings.text }}</p>
+          {% endif %}
+          {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+          <a class="btn btn-primary mt-3" href="{{ section.settings.button_link }}">
+            {{ section.settings.button_label | escape }}
+          </a>
+          {% endif %}
+          {% if section.settings.link_text %}
+          <div class="mt-2">{{ section.settings.link_text }}</div>
+          {% endif %}
+        </div>
+        
+        <!-- Dark text for under image-->
+        <div class="col-md offset-md-6 d-block d-md-none" style="color:black;">
+          {% if section.settings.title != blank %}
+            <h2>{{ section.settings.title | escape }}</h2>
+          {% endif %}
+          {% if section.settings.text != blank %}
+            <p>{{ section.settings.text }}</p>
+          {% endif %}
+          {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+            <a class="btn btn-primary mt-3" href="{{ section.settings.button_link }}">
+              {{ section.settings.button_label | escape }}
+            </a>
+          {% endif %}
+          {% if section.settings.link_text %}
+            <div class="mt-2">{{ section.settings.link_text }}</div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  {% schema %}
+    {
+      "name": "Modal",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "color",
+          "id": "overlay_color",
+          "label": "Banner Color Overlay",
+          "default": "#000000",
+          "info": "This allows you to pick a color to overlay on the banner image"
+        },
+        {
+          "type": "color",
+          "id": "text-color",
+          "label": "Text color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "select",
+          "id": "layout",
+          "label": "Image alignment",
+          "default": "left",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Modal"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Vores grafentech-boxershorts består af det revolutionerende og nyligt udviklede materiale, kaldet grafen. Det består af atom-tynde kulstofflager opbygget i sekskanter, som har mange fordelagtige egenskaber.</p>"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button label"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link"
+        },
+        {
+          "type": "richtext",
+          "id": "link_text",
+          "label": "Text for link",
+          "default": "<p>Læs mere om Modal her</p>"
+        }
+      ],
+      "presets": [
+        {
+          "name": "Modal",
+          "category": "Boxershorts"
+        }
+      ]
+    }
+  {% endschema %}
+  

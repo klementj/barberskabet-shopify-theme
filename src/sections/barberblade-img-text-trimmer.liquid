@@ -1,0 +1,168 @@
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available when you add the "Image with text" section in the theme editor.
+
+  Theme Store required settings
+  - Image
+  - Heading: title of the block
+  - Text: description of the block
+
+  Theme Store optional settings
+  - Bagground color: Color of the sections bagground
+  - Button label: label associated with the button
+  - Button link: link of the button
+{%- endcomment -%}
+
+<div style="background-color: {{ section.settings.bg-color }}; color: {{ section.settings.text-color }} ">  
+  <section class="container py-3 py-md-4" >
+      <div id="section-{{ section.id }}--direction" class="row">
+    
+        <!-- Image layout -->
+        <div class="image-with-text__wrapper col-md d-flex flex-column align-items-start justify-content-center">
+          {% if section.settings.image != blank %}
+          {% include 'responsive-image' with
+            image: section.settings.image,
+            img_class: image-with-text__image,
+            max_width: 1140,
+            max_height: 845
+          %}
+          {% else %}
+          {{ 'image' | placeholder_svg_tag: 'img-thumbnail' }}
+          {% endif %}
+        </div>
+    
+      
+        <div class="image-with-text__text col-md d-flex flex-column align-items-start justify-content-center">
+        {% if section.settings.title != blank %}
+          <h2>{{ section.settings.title | escape }}</h2>
+        {% endif %}
+        {% if section.settings.text != blank %}
+          <div class="mt-1 mb-2">{{ section.settings.text }}</div>
+        {% endif %}
+        {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+          <a class="btn btn-primary" href="{{ section.settings.button_link }}">
+            {{ section.settings.button_label | escape }}
+          </a>
+        {% endif %}
+        </div>
+        
+      </div>
+    </section>
+  </div>
+  
+    
+    {% if section.settings.layout == 'top' %}
+      <style>
+         #section-{{ section.id }}--direction{
+            flex-direction: column;
+         }
+  
+      </style>
+    {% endif %}
+    
+    {% if section.settings.layout == 'bottom' %}
+      <style>
+         #section-{{ section.id }}--direction{
+            flex-direction: column-reverse;
+         }
+         
+         #section-{{ section.id }}--direction>.image-with-text__wrapper {
+           width: 80%;
+           margin: auto;
+         }
+      </style>
+    {% endif %}
+    
+    
+    {% if section.settings.layout == 'right' %}
+      <style>
+         #section-{{ section.id }}--direction{
+            flex-direction: row-reverse;
+         }
+      </style>
+    {% endif %}
+    
+    <style>
+      .image-with-text__image{
+        height: 300px;
+        object-fit: cover;
+      }
+    </style>
+    
+
+{% schema %}
+  {
+    "name": "Grafen",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "color",
+        "id": "bg-color",
+        "label": "Bagground color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "text-color",
+        "label": "Text color",
+        "default": "#000000"
+      },
+      {
+        "type": "select",
+        "id": "layout",
+        "label": "Image alignment",
+        "default": "left",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          },
+          {
+            "value": "top",
+            "label": "Top"
+          },
+          {
+            "value": "bottom",
+            "label": "Bottom"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Image with text"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>Vores boxershorts består af det nyligt udviklede materiale, kaldet grafen, som består af atom-tynde kulstof-flager, og som har mange enestående egenskaber: </p>"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Trimmer",
+        "category": "Barberblade"
+      }
+    ]
+  }
+{% endschema %}

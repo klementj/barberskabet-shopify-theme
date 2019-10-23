@@ -1,0 +1,230 @@
+{% if section.settings.image != blank %}
+  {% assign hero_image = section.settings.image %}
+{% else %}
+  {% assign hero_image = 'placeholder-svg' %}
+{% endif %}
+
+<div class="d-flex flex-column hero-image jumbotron-fluid lazyload mb-sm-0 pb-5"
+      {% if section.settings.overlay_color != 'rgba(0,0,0,0)' %}
+        data-bgprefix="linear-gradient({{ section.settings.overlay_color |
+        color_modify: 'alpha', 0.5}}, {{ section.settings.overlay_color |
+        color_modify: 'alpha', 0.5}}), "
+      {% else %}
+        data-bgprefix="linear-gradient({{ section.settings.overlay_color}}, {{
+                         section.settings.overlay_color}}), "
+      {% endif %}
+        data-bgset="{% include 'responsive-bg-image', image: hero_image %}"
+        style="background-color: #01393d;"
+        >
+
+  <!-- Navigation -->
+  {% include 'navigation-hero' %}
+
+  <div class="container d-flex flex-column flex-grow-1 align-self-center justify-content-center">
+    <div class="text-center">
+      <div class="col">
+        {% if section.settings.title != blank %}
+        <h2 class="h1">{{ section.settings.title | escape }}</h2>
+        {% endif %}
+        {% if section.settings.text != blank %}
+        <p class="lead">{{ section.settings.text }}</p>
+        {% endif %}
+      </div>
+      <div class="col mt-2 mt-md-3 d-flex align-items-center flex-column flex-md-row justify-content-center">
+        {% if section.settings.button_label_1 != blank and
+          section.settings.button_link_1 != blank %}
+          <a class="btn btn-primary
+          {% if section.settings.button_label_2 != blank and
+            section.settings.button_link_2 != blank %} mr-md-2 mb-2 mb-md-0
+           {% endif %}"
+            href="{{ section.settings.button_link_1 }}">
+            {{ section.settings.button_label_1 | escape }}
+          </a>
+        {% endif %}
+        {% if section.settings.button_label_2 != blank and
+          section.settings.button_link_2 != blank %}
+          <a class="btn btn-primary
+          {% if section.settings.button_label_3 != blank and
+            section.settings.button_link_3 != blank %} mr-md-2 mb-2 mb-md-0
+          {% endif %}"
+            href="{{
+                    section.settings.button_link_2 }}">
+            {{ section.settings.button_label_2 | escape }}
+          </a>
+        {% endif %}
+        {% if section.settings.button_label_3 != blank and
+          section.settings.button_link_3 != blank %}
+          <a class="btn btn-primary" href="{{
+                    section.settings.button_link_3 }}">
+            {{ section.settings.button_label_3 | escape }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div> <!-- .container end -->
+</div>
+
+<!-- Floating call-to-action -->
+{% if section.settings.show_call_to_action == true %}
+  <div id="floating-cta" class="fixed-top" style="background-color: {{ section.settings.banner_bg }}; color: {{ section.settings.banner_color }}">
+    <div class="container py-2">
+      <div class="d-none d-flex justify-content-between align-items-center">
+
+        <a href="/" aria-label="Gå til forsiden" title="Gå til forsiden">
+          <span class="mr-2" style="width: 25px; fill:white;">{% include 'icon-barberskabet-small' %}</span>
+        </a>
+        {% if section.settings.title != blank %}
+          <p class="text-right text-uppercase d-none d-md-block flex-fill mb-0 mr-2">{{ section.settings.title }}</p>
+        {% endif %}
+
+        {% if section.settings.button_label_1 != blank and
+          section.settings.button_link_1 != blank %}
+          <a class="btn btn-primary
+          {% if section.settings.button_label_2 != blank and
+            section.settings.button_link_2 != blank %} mr-3
+           {% endif %}"
+            href="{{ section.settings.button_link_1 }}">
+            {{ section.settings.button_label_1 | escape }}
+          </a>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% javascript %}
+
+$(window).scroll(function() {
+  
+  const cta = $('#floating-cta')
+  if ( !!cta ) {
+    if ( $(this).scrollTop() > 400 ) {
+      cta.fadeIn();
+    } else {
+      cta.fadeOut();
+    }
+  }
+
+})
+{% endjavascript %}
+
+<style>
+  @media screen and (max-width: 767px) {
+    .hero-image {
+      background-position-x: {{ section.settings.image_placement }}px;
+    }
+  }
+</style>
+
+{% stylesheet %}
+  #floating-cta{
+    display: none;
+  }
+{% endstylesheet %}
+
+{% schema %}
+  {
+    "name": "Hero Banner Landingpage",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      },
+      {
+        "type": "range",
+        "id": "image_placement",
+        "min": -600,
+        "max": 0,
+        "step": 10,
+        "default": 0,
+        "unit": "px",
+        "label": "Image placement",
+        "info": "Change image placement on the x-axis on medium devices(768px) and below"
+      },
+      {
+        "type": "color",
+        "id": "overlay_color",
+        "label": "Banner Color Overlay",
+        "default": "#000000",
+        "info": "This allows you to pick a color to overlay on the banner image"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Prøv vores revolutionerende grafentech boxershorts",
+        "placeholder": "Prøv vores revolutionerende grafentech boxershorts"
+      },
+      {
+        "type": "text",
+        "id": "text",
+        "label": "Text",
+        "default": "Prøvepakke fra kun ​49 kr.",
+        "placeholder": "Prøvepakke fra kun ​49 kr."
+      },
+      {
+        "type": "text",
+        "id": "button_label_1",
+        "label": "Primary Button label",
+        "default": "Bestil prøvepakke",
+        "placeholder": "Bestil prøvepakke"
+      },
+      {
+        "type": "url",
+        "id": "button_link_1",
+        "label": "Primary Button link",
+        "default": "/collections"
+      },
+      {
+        "type": "text",
+        "id": "button_label_2",
+        "label": "Secondary Button label"
+      },
+      {
+        "type": "url",
+        "id": "button_link_2",
+        "label": "Secondary Button link"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_call_to_action",
+        "label": "Show floating call to action",
+        "default": false
+      },
+      {
+        "type": "color",
+        "id": "banner_bg",
+        "label": "CTA banner background",
+        "default": "#00686c",
+        "info": "Background color on floating call-to-action"
+      },
+      {
+        "type": "color",
+        "id": "banner_color",
+        "label": "CTA banner text",
+        "default": "#ffffff",
+        "info": "Text color on floating call-to-action"
+      },
+      {
+        "type": "link_list",
+        "id": "menu1",
+        "label": "Venstre Menu",
+        "default": "main-menu"
+      },
+      {
+        "type": "link_list",
+        "id": "menu2",
+        "label": "Højre Menu",
+        "default": "main-menu"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Hero Banner",
+        "category": "Call to action"
+      }
+    ]
+  }
+{% endschema %}

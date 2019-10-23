@@ -1,0 +1,32 @@
+<div style="background-color: {{ section.settings.bg-color }};">
+  {% include 'trustpilot' %}
+</div>
+
+{% schema %}
+  {
+    "name": "Trustpilot mellem widget",
+    "settings": [
+      {
+        "type": "color",
+        "id": "bg-color",
+        "label": "Bagground color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading"
+      },
+      {
+        "type": "textarea",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+      }
+    ],
+    "presets": [{
+        "name": "Trustpilot mellem widget",
+        "category": "Underbukser"
+    }]
+  }
+{% endschema %}

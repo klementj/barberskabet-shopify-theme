@@ -1,0 +1,117 @@
+<section class="container text-center py-3 py-md-4">
+
+    {% if section.settings.header != blank %}
+      <div class="row mb-3">
+        <div class="col-md-12">
+          <h2>
+            {{ section.settings.header }}
+          </h2>
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="row">
+      {% for block in section.blocks %}
+
+        <div class="col-lg-4 col-sm-8 offset-sm-2 offset-lg-0 mb-3">
+          <div class="plan-box">
+            <div class="mask-box">
+              <!-- Amount -->
+              <span class="no-shavers h3">{{ block.settings.amount }}</span>
+              <!-- Image -->
+              {% if block.settings.image != blank %}
+                {% include 'responsive-image-medlemsskaber' with
+                  image: block.settings.image,
+                  image_class: "shaver",
+                  max_width: 160,
+                  max_height: 110
+                %}
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'shaver' }}
+              {% endif %}
+              <!-- Ribbon -->
+              <div class="corner-ribbon shadow">{{ block.settings.ribbon}}</div>
+            </div>
+            <div class="description">{{ block.settings.description }}</div>
+            <div class="money h2">{{ block.settings.price }}</div>
+            {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+              <a class="btn btn-primary" href="{{ block.settings.button_link }}">
+                {{ block.settings.button_label | escape }}
+              </a>
+            {% endif %}
+          </div>
+        </div>
+        
+      {% endfor %}
+    </div> <!-- products .row-->
+
+</section> <!-- .container -->
+
+{% schema %}
+{
+  "name": "Medlemskabspriser",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "text",
+      "id": "header",
+      "label": "Sektion overskrift"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "Product",
+      "name": "Produkt",
+      "settings": [
+        {
+          "type": "text",
+          "id": "ribbon",
+          "label": "Bånd",
+          "default": "Hver 2. måned"
+        },
+        {
+          "type": "text",
+          "id": "amount",
+          "label": "Antal blade",
+          "default": "8 X"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Billede",
+          "info": "160 x 110px"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Beskrivelse",
+          "default": "Jeg barberer mig ca.<br> <b>5-7 gange pr. uge</b> <br> Gratis forsendelse"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Pris",
+          "default": "10,00 kr."
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Knap tekst",
+          "default": "Vælg hver 2. måned"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Knap link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Medlemskabspriser ny",
+      "category": "Barbering"
+    }
+  ]
+}
+{% endschema %}
