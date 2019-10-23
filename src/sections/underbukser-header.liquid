@@ -4,59 +4,61 @@
   {% assign hero_image = 'placeholder-svg' %}
 {% endif %}
 
-<div class="hero-image jumbotron-fluid lazyload d-flex justify-content-center mb-sm-0 pb-5"
-  {% if section.settings.overlay_color != 'rgba(0,0,0,0)' %}
-    data-bgprefix="linear-gradient({{ section.settings.overlay_color |
-    color_modify: 'alpha', 0.5}}, {{ section.settings.overlay_color |
-    color_modify: 'alpha', 0.5}}), "
-  {% else %}
-    data-bgprefix="linear-gradient({{ section.settings.overlay_color}}, {{
-                      section.settings.overlay_color}}), "
-  {% endif %}
-  data-bgset="{% include 'responsive-bg-image', image: hero_image %}"
->
-  
-  
-  <div class="container">
-    <div class="flex-row">
+<div class="d-flex flex-column hero-image jumbotron-fluid lazyload mb-sm-0 pb-5"
+      {% if section.settings.overlay_color != 'rgba(0,0,0,0)' %}
+        data-bgprefix="linear-gradient({{ section.settings.overlay_color |
+        color_modify: 'alpha', 0.5}}, {{ section.settings.overlay_color |
+        color_modify: 'alpha', 0.5}}), "
+      {% else %}
+        data-bgprefix="linear-gradient({{ section.settings.overlay_color}}, {{
+                         section.settings.overlay_color}}), "
+      {% endif %}
+        data-bgset="{% include 'responsive-bg-image', image: hero_image %}"
+        style="background-color: #01393d;"
+        >
 
-      <!-- Logo wrapper -->
-      <div role="banner" style="fill: white; stroke:white;">
-        <h1 class="text-center mx-auto" style="max-width: 200px;">  
-          <a href="/" class="logo-image" aria-label="Gå til forsiden">
-            {% include 'icon-barberskabet' %}
-          </a>
-        </h1>
+  <!-- Navigation -->
+  {% include 'navigation-hero' %}
+
+  <div class="container d-flex flex-column flex-grow-1 align-self-center justify-content-center">
+    <div class="text-center">
+      <div class="col">
+        {% if section.settings.title != blank %}
+        <h2 class="h1">{{ section.settings.title | escape }}</h2>
+        {% endif %}
+        {% if section.settings.text != blank %}
+        <p class="lead">{{ section.settings.text }}</p>
+        {% endif %}
       </div>
-  
-      <!-- Call to action -->
-      <div class="pt-1 pt-md-2 pt-lg-4 flex-row text-center align-self-center">
-        <div class="col">
-          {% if section.settings.title != blank %}
-            <h2 class="h1">{{ section.settings.title }}</h2>
-          {% endif %}
-          {% if section.settings.text != blank %}
-            <p class="lead">{{ section.settings.text }}</p>
-          {% endif %}
-        </div>
-        <div class="col mt-2 mt-md-3">
-          {% if section.settings.button_label_1 != blank and
-            section.settings.button_link_1 != blank %}
-            <a class="btn btn-lg btn-primary
-            {% if section.settings.button_label_2 != blank and
-              section.settings.button_link_2 != blank %} mr-3
-             {% endif %}"
-              href="{{ section.settings.button_link_1 }}">
-              {{ section.settings.button_label_1 | escape }}
-            </a>
-          {% endif %}
+      <div class="col mt-2 mt-md-3 d-flex align-items-center flex-column flex-md-row justify-content-center">
+        {% if section.settings.button_label_1 != blank and
+          section.settings.button_link_1 != blank %}
+          <a class="btn btn-primary
           {% if section.settings.button_label_2 != blank and
-            section.settings.button_link_2 != blank %}
-            <a class="btn btn-lg" href="{{ section.settings.button_link_2 }}">
-              {{ section.settings.button_label_2 | escape }}
-            </a>
-          {% endif %}
-        </div>
+            section.settings.button_link_2 != blank %} mr-md-2 mb-2 mb-md-0
+           {% endif %}"
+            href="{{ section.settings.button_link_1 }}">
+            {{ section.settings.button_label_1 | escape }}
+          </a>
+        {% endif %}
+        {% if section.settings.button_label_2 != blank and
+          section.settings.button_link_2 != blank %}
+          <a class="btn btn-primary
+          {% if section.settings.button_label_3 != blank and
+            section.settings.button_link_3 != blank %} mr-md-2 mb-2 mb-md-0
+          {% endif %}"
+            href="{{
+                    section.settings.button_link_2 }}">
+            {{ section.settings.button_label_2 | escape }}
+          </a>
+        {% endif %}
+        {% if section.settings.button_label_3 != blank and
+          section.settings.button_link_3 != blank %}
+          <a class="btn btn-primary" href="{{
+                    section.settings.button_link_3 }}">
+            {{ section.settings.button_label_3 | escape }}
+          </a>
+        {% endif %}
       </div>
     </div>
   </div> <!-- .container end -->
@@ -68,8 +70,9 @@
     <div class="container py-2">
       <div class="d-none d-flex justify-content-between align-items-center">
 
-        <span class="mr-2" style="width: 25px; fill:white;">{% include 'icon-barberskabet-small' %}</span>
-
+        <a href="/" aria-label="Gå til forsiden" title="Gå til forsiden">
+          <span class="mr-2" style="width: 25px; fill:white;">{% include 'icon-barberskabet-small' %}</span>
+        </a>
         {% if section.settings.title != blank %}
           <p class="text-right text-uppercase d-none d-md-block flex-fill mb-0 mr-2">{{ section.settings.title }}</p>
         {% endif %}
@@ -106,6 +109,14 @@ $(window).scroll(function() {
 })
 {% endjavascript %}
 
+<style>
+  @media screen and (max-width: 767px) {
+    .hero-image {
+      background-position-x: {{ section.settings.image_placement }}px;
+    }
+  }
+</style>
+
 {% stylesheet %}
   #floating-cta{
     display: none;
@@ -120,6 +131,17 @@ $(window).scroll(function() {
         "type": "image_picker",
         "id": "image",
         "label": "Image"
+      },
+      {
+        "type": "range",
+        "id": "image_placement",
+        "min": -600,
+        "max": 0,
+        "step": 10,
+        "default": 0,
+        "unit": "px",
+        "label": "Image placement",
+        "info": "Change image placement on the x-axis on medium devices(768px) and below"
       },
       {
         "type": "color",
@@ -184,6 +206,18 @@ $(window).scroll(function() {
         "label": "CTA banner text",
         "default": "#ffffff",
         "info": "Text color on floating call-to-action"
+      },
+      {
+        "type": "link_list",
+        "id": "menu1",
+        "label": "Venstre Menu",
+        "default": "main-menu"
+      },
+      {
+        "type": "link_list",
+        "id": "menu2",
+        "label": "Højre Menu",
+        "default": "main-menu"
       }
     ],
     "presets": [

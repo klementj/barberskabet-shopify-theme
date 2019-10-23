@@ -23,7 +23,7 @@
           {% include 'responsive-image' with
             image: section.settings.image,
             img_class: image-with-text__image,
-            max_width: 1140,
+            max_width: 845,
             max_height: 845
           %}
           {% else %}
@@ -32,12 +32,12 @@
         </div>
     
       
-        <div class="image-with-text__text col-sm mb-3">
+        <div class="image-with-text__text col-sm mb-3 d-flex flex-column align-items-start justify-content-center">
         {% if section.settings.title != blank %}
           <h2>{{ section.settings.title | escape }}</h2>
         {% endif %}
         {% if section.settings.text != blank %}
-          <div>{{ section.settings.text }}</div>
+          <div class="mt-1 mb-2">{{ section.settings.text }}</div>
         {% endif %}
         {% if section.settings.button_label != blank and section.settings.button_link != blank %}
           <a class="btn btn-primary" href="{{ section.settings.button_link }}">

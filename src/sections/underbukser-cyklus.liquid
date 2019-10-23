@@ -18,7 +18,7 @@
       <div id="section-{{ section.id }}--direction" class="row">
     
         <!-- Image layout -->
-        <div class="image-with-text__wrapper col-sm text-center">
+        <div class="image-with-text__wrapper col-lg text-center d-flex align-items-center justify-content-center">
           {% if section.settings.image != blank %}
           {% include 'responsive-image' with
             image: section.settings.image,
@@ -27,12 +27,12 @@
             max_height: 845
           %}
           {% else %}
-          {{ 'image' | placeholder_svg_tag: 'img-thumbnail' }}
+          {% include 'icon-cyklus' %}
           {% endif %}
         </div>
     
       
-        <div class="image-with-text__text col-sm">
+        <div class="image-with-text__text col-lg">
         {% if section.settings.title != blank %}
           <h2>{{ section.settings.title | escape }}</h2>
         {% endif %}
@@ -162,7 +162,7 @@
     "presets": [
       {
         "name": "Cyklus for udskiftning",
-        "category": "Image"
+        "category": "Underbukser"
       }
     ]
   }
