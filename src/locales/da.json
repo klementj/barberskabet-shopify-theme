@@ -96,14 +96,12 @@
       "remove": "Fjern",
       "note": "Specielle instruktioner for sælger",
       "subtotal": "Sub total",
-      "shipping_at_checkout":
-        "Forsendelse og skatter bliver beregnet ved betaling",
+      "shipping_at_checkout": "Forsendelse og skatter bliver beregnet ved betaling",
       "update": "Opdater Kurv",
       "checkout": "Gå til betaling",
       "empty": "Din kurv er i øjeblikket tom.",
       "cookies_required": "Slå cookies til for at bruge indkøbskurven",
-      "continue_browsing_html":
-        "Fortsæt med at handle <a href=\"/collections/all\">her</a>.",
+      "continue_browsing_html": "Fortsæt med at handle <a href=\"/collections/all\">her</a>.",
       "item_quantity": "Produkt antal",
       "savings": "Du sparer"
     },
