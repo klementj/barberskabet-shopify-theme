@@ -13,6 +13,20 @@
         data-bgset="{% include 'responsive-bg-image', image: 'placeholder-svg' %}">
       {% endif %}
 
+<!-- Image layout -->
+<div class="image-with-text__wrapper col-sm text-center">
+  {% if section.settings.image != blank %}
+  {% include 'responsive-image' with
+    image: section.settings.image,
+    img_class: image-with-text__image,
+    max_width: 845,
+    max_height: 845
+  %}
+  {% else %}
+  {{ 'image' | placeholder_svg_tag: 'img-thumbnail' }}
+  {% endif %}
+</div>
+
   <div class="flex-row text-center align-self-center">
     <div class="col">
       {% if section.settings.title != blank %}
