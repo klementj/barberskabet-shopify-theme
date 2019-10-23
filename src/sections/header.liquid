@@ -12,8 +12,11 @@ Theme Store optional settings
 {%- endcomment -%}
 
 <section data-section-id="{{ section.id }}" data-section-type="header">
-  <header>
-
+  <header style="background-color: #01393d; color: white;"
+  {% unless template.name == "index" %}
+    class="mb-1 mb-md-3 mb-lg-4"
+  {% endunless %}
+  >
     {%- if section.settings.announcement_bar_enabled -%}
     <div>
       {%- if section.settings.announcement_bar_home_page_only == false or template.name == 'index' -%}
