@@ -1,55 +1,51 @@
-<div class="row frontpage-section-4" id="trial">
-  <div class="container text-center">
+<section class="container text-center py-3 py-md-4">
+
+    {% if section.settings.header != blank %}
+      <div class="row mb-3">
+        <div class="col-md-12">
+          <h2>
+            {{ section.settings.header }}
+          </h2>
+        </div>
+      </div>
+    {% endif %}
+
     <div class="row">
-      <div class="col-md-12">
-        <h2>
-          {{ section.settings.header }}
-        </h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-4 col-sm-8 offset-sm-2 offset-lg-0 mb-3">
-        <div class="plan-box">
-          <div class="mask-box">
-            <span class="no-shavers">{{ section.settings.box1-amount}}</span>
-            {{ 'antal-skraber.png' | asset_url | img_tag: 'Skraber',  'shaver' }}
-            <div class="corner-ribbon top-left groomee shadow">{{ section.settings.box1-ribbon}}</div>
+      {% for block in section.blocks %}
+
+        <div class="col-lg-4 col-sm-8 offset-sm-2 offset-lg-0 mb-3">
+          <div class="plan-box">
+            <div class="mask-box">
+              <!-- Amount -->
+              <span class="no-shavers h3">{{ block.settings.amount }}</span>
+              <!-- Image -->
+              {% if block.settings.image != blank %}
+                {% include 'responsive-image-medlemsskaber' with
+                  image: block.settings.image,
+                  image_class: "shaver",
+                  max_width: 160,
+                  max_height: 110
+                %}
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'shaver' }}
+              {% endif %}
+              <!-- Ribbon -->
+              <div class="corner-ribbon shadow">{{ block.settings.ribbon}}</div>
+            </div>
+            <div class="description">{{ block.settings.description }}</div>
+            <div class="money h2">{{ block.settings.price }}</div>
+            {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+              <a class="btn btn-primary" href="{{ block.settings.button_link }}">
+                {{ block.settings.button_label | escape }}
+              </a>
+            {% endif %}
           </div>
-          <div class="description">{{ section.settings.box1-description }}</div>
-          <div class="price">{{ section.settings.box1-price }}</div>
-          <a href="#" class="btn btn-primary buy-button"
-            onclick="addItemToCart({{ section.settings.variant_id1 }}, {{ section.settings.quantity1 }}, {{ section.settings.shipping_interval_frequency1 }}, {{ section.settings.shipping_interval_unit_type1 }}, {{ section.settings.subscription_id1 }}, {{ section.settings.recurring_price1 }}, {{ section.settings.charge_delay1 }})">{{ section.settings.box1-button }}</a>
         </div>
-      </div>
-      <div class="col-lg-4 col-sm-8 offset-sm-2 offset-lg-0 mb-3">
-        <div class="plan-box">
-          <div class="mask-box">
-            <span class="no-shavers">{{ section.settings.box2-amount}}</span>
-            {{ 'antal-skraber.png' | asset_url | img_tag: 'Skraber',  'shaver' }}
-            <div class="corner-ribbon top-left groomee shadow">{{ section.settings.box2-ribbon}}</div>
-          </div>
-          <div class="description">{{ section.settings.box2-description }}</div>
-          <div class="price">{{ section.settings.box2-price }}</div>
-          <a href="#" class="btn btn-primary buy-button"
-            onclick="addItemToCart({{ section.settings.variant_id2 }}, {{ section.settings.quantity2 }}, {{ section.settings.shipping_interval_frequency2 }}, {{ section.settings.shipping_interval_unit_type2 }}, {{ section.settings.subscription_id2 }}, {{ section.settings.recurring_price2 }}, {{ section.settings.charge_delay2 }})">{{ section.settings.box2-button }}</a>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-8 offset-sm-2 offset-lg-0 mb-3">
-        <div class="plan-box">
-          <div class="mask-box">
-            <span class="no-shavers">{{ section.settings.box3-amount}}</span>
-            {{ 'antal-skraber.png' | asset_url | img_tag: 'Skraber',  'shaver' }}
-            <div class="corner-ribbon top-left groomee shadow">{{ section.settings.box3-ribbon}}</div>
-          </div>
-          <div class="description">{{ section.settings.box3-description }}</div>
-          <div class="price">{{ section.settings.box3-price }}</div>
-          <a href="#" class="btn btn-primary buy-button"
-            onclick="addItemToCart({{ section.settings.variant_id3 }}, {{ section.settings.quantity3 }}, {{ section.settings.shipping_interval_frequency3 }}, {{ section.settings.shipping_interval_unit_type3 }}, {{ section.settings.subscription_id3 }}, {{ section.settings.recurring_price3 }}, {{ section.settings.charge_delay3 }})">{{ section.settings.box3-button }}</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+        
+      {% endfor %}
+    </div> <!-- products .row-->
+
+</section> <!-- .container -->
 
 {% schema %}
 {
@@ -64,7 +60,7 @@
   ],
   "blocks": [
     {
-      "type": "Produkt",
+      "type": "Product",
       "name": "Produkt",
       "settings": [
         {
@@ -83,13 +79,13 @@
           "type": "image_picker",
           "id": "image",
           "label": "Billede",
-          "info": "150 x 100px"
-        }
+          "info": "160 x 110px"
+        },
         {
           "type": "text",
           "id": "description",
           "label": "Beskrivelse",
-          "default": "Jeg barberer mig ca. pr. uge"
+          "default": "Jeg barberer mig ca.<br> <b>5-7 gange pr. uge</b> <br> Gratis forsendelse"
         },
         {
           "type": "text",
@@ -100,7 +96,8 @@
         {
           "type": "text",
           "id": "button_label",
-          "label": "Knap tekst"
+          "label": "Knap tekst",
+          "default": "Vælg hver 2. måned"
         },
         {
           "type": "url",
