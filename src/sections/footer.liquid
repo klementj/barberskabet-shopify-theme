@@ -1,11 +1,5 @@
 <div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=773654399457086";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/da_DK/sdk.js#xfbml=1&version=v4.0"></script>
 
 
 <footer class="pt-md-4 pb-2 pt-3 footer" data-section-id="{{ section.id }}" data-section-type="footer" itemscope itemtype="http://schema.org/Organization">
@@ -80,25 +74,28 @@
       {% endfor %}
     </div>
 
-    <div class="text-center">
-      <ul class="inline-list text-uppercase footer__menu">
-          <li class="list-inline-item"><a class="nav-link" href="{{ shop.secure_url }}" itemprop="url">&copy; {{ shop.name }} {{ 'now' | date: "%Y" }}</a></li>
-        {% for link in linklists[section.settings.footer_secondary_linklist].links %}
-          <li class="list-inline-item"><a class="nav-link" href="{{ link.url }}">{{ link.title }}</a></li>
-        {% endfor %}
-      
-      </ul>
-
-      {% if section.settings.footer_payment_enable %}
-        <!-- {% unless shop.enabled_payment_types == empty %} -->
-        <ul class="inline-list mt-3">
-          {% for type in shop.enabled_payment_types %}
-            <li class="list-inline-item">
-              {{ type | payment_type_svg_tag: class: 'payment-cc-icon' }}
-            </li>
+    <div class="row text-center">
+      <div class="col-12">
+        <ul class="list-inline text-uppercase">
+            <li class="list-inline-item"><a class="nav-link" href="{{ shop.secure_url }}" itemprop="url">&copy; {{ shop.name }} {{ 'now' | date: "%Y" }}</a></li>
+          {% for link in linklists[section.settings.footer_secondary_linklist].links %}
+            <li class="list-inline-item"><a class="nav-link" href="{{ link.url }}">{{ link.title }}</a></li>
           {% endfor %}
         </ul>
-        <!-- {% endunless %} -->
+      </div>
+
+      {% if section.settings.footer_payment_enable %}
+      <!-- {% unless shop.enabled_payment_types == empty %} -->
+        <div class="col-12">    
+          <ul class="list-inline mt-3">
+            {% for type in shop.enabled_payment_types %}
+              <li class="list-inline-item">
+                {{ type | payment_type_svg_tag: class: 'payment-cc-icon' }}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      <!-- {% endunless %} -->
       {% endif %}
     </div>
   </div>
@@ -197,3 +194,5 @@
   ]
 }
 {% endschema %}
+
+
