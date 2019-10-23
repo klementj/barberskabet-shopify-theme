@@ -1,5 +1,5 @@
 .hero-image {
-  min-height: 600px;
+  min-height: 630px;
   background-size: cover;
   color: white;
 
@@ -11,5 +11,15 @@
 @include media-breakpoint-down(sm) {
   .hero-image {
     background-position-x: -100px;
+  }
+}
+
+@include media-breakpoint-down(xs) {
+  .h1{
+    font-size: 1.25rem;
+  }
+
+  .lead {
+    font-size: 1rem;
   }
 }

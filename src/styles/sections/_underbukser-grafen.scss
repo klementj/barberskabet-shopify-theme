@@ -1,12 +1,18 @@
-.banner-image-grafen {
+.banner-image--hidden {
   min-height: 450px;
   background-size: cover;
-  color: white;
+  background-position: bottom;
+  // color: white;
 
   h3 {
     font-family: $font-body;
   }
 
+  .btn{
+    color: white;
+    text-decoration: none;
+  }
+  
   a{
     color: inherit;
     text-decoration: underline;
@@ -18,8 +24,9 @@
 }
 
 @include media-breakpoint-down(sm) {
-  .banner-image-grafen {
+  .banner-image--hidden {
     // height: 250px;
+    min-height: 0;
     background-image: none !important;
   }
 }

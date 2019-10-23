@@ -1,6 +1,6 @@
-// html {
-//   font-size: 100%;
-// }
+html {
+  scroll-behavior: smooth;
+}
 
 // body {
 //   font-family: $font-body;
@@ -17,7 +17,7 @@ h5,
 h6 {
   font-family: $font-heading;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   word-spacing: 3px;
 }
 
@@ -34,12 +34,30 @@ h6 {
 //   color: inherit;
 // }
 
+.heading {
+  h2{
+    margin: 0;
+  }
+}
+
 .nav-link {
   font-weight: 600;
   text-transform: uppercase;
   font-size: .8rem;
   letter-spacing: 2px;
 }
+
+.small{
+  font-size: .8rem;
+  letter-spacing: 2px;
+}
+
+
+//.small {
+//   text-transform: uppercase;
+//   font-size: .70rem;
+//   letter-spacing: 1px;
+// }
 
 // button,
 // .btn {
