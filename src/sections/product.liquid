@@ -5,8 +5,15 @@
 
   <!-- .product-container -->
   <div class="container">
+    <div class="d-block d-lg-none">
+        <div class="trustpilot-widget" data-locale="da-DK" data-template-id="5419b6ffb0d04a076446a9af" data-businessunit-id="56b8552e0000ff000588a2a7" data-style-height="20px" data-style-width="100%" data-theme="light" style="position: relative;"><iframe frameborder="0" scrolling="no" title="Customer reviews powered by Trustpilot" src="https://widget.trustpilot.com/trustboxes/5419b6ffb0d04a076446a9af/index.html?templateId=5419b6ffb0d04a076446a9af&amp;businessunitId=56b8552e0000ff000588a2a7#locale=da-DK&amp;styleHeight=20px&amp;styleWidth=100%25&amp;theme=light" style="position: relative; height: 20px; width: 100%; border-style: none; display: block; overflow: hidden;"></iframe></div>
+
+        <!-- Product title -->
+        <h2 class="h5 mt-2 text-center">{{ product.title }}</h2>
+    </div>
+
     <div class="row">
-      <div class="col-md">
+      <div class="col-lg">
         <div class="container product-image">
 
           {% for image in product.images %}
@@ -44,9 +51,9 @@
         <!-- col -->
       </div>
 
-      <div class="col-md text-center">
+      <div class="col-lg text-center">
 
-          <div class="trustpilot-widget" data-locale="da-DK" data-template-id="5419b6ffb0d04a076446a9af" data-businessunit-id="56b8552e0000ff000588a2a7" data-style-height="20px" data-style-width="100%" data-theme="light" style="position: relative;"><iframe frameborder="0" scrolling="no" title="Customer reviews powered by Trustpilot" src="https://widget.trustpilot.com/trustboxes/5419b6ffb0d04a076446a9af/index.html?templateId=5419b6ffb0d04a076446a9af&amp;businessunitId=56b8552e0000ff000588a2a7#locale=da-DK&amp;styleHeight=20px&amp;styleWidth=100%25&amp;theme=light" style="position: relative; height: 20px; width: 100%; border-style: none; display: block; overflow: hidden;"></iframe></div>
+          <div class="d-none d-lg-block trustpilot-widget" data-locale="da-DK" data-template-id="5419b6ffb0d04a076446a9af" data-businessunit-id="56b8552e0000ff000588a2a7" data-style-height="20px" data-style-width="100%" data-theme="light" style="position: relative;"><iframe frameborder="0" scrolling="no" title="Customer reviews powered by Trustpilot" src="https://widget.trustpilot.com/trustboxes/5419b6ffb0d04a076446a9af/index.html?templateId=5419b6ffb0d04a076446a9af&amp;businessunitId=56b8552e0000ff000588a2a7#locale=da-DK&amp;styleHeight=20px&amp;styleWidth=100%25&amp;theme=light" style="position: relative; height: 20px; width: 100%; border-style: none; display: block; overflow: hidden;"></iframe></div>
 
         <!-- Product title -->
         <h2 class="h2 mt-2">{{ product.title }}</h2>
@@ -69,7 +76,11 @@
           <div class="row">
             <div class="col h3">
               <span data-product-price>
-                {{ current_variant.price | money }}
+                {% if section.settings.price != blank %}
+                  {{ section.settings.price | money}}
+                {% else %}
+                  {{ current_variant.price | money }}
+                {% endif %}
               </span>
             </div>
             <hr>
@@ -83,12 +94,90 @@
         </div>
 
         {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
+
         <div class="py-2 text-center">
 
           <div class="form-group">
+
+            {% if product.has_only_default_variant %}
+              <input name="id" value="{{ product.variants.first.id }}" type="hidden">
+
+            {% else %}
+              {% for option in product.options_with_values %}
+                <div class="js">
+
+                  {% if forloop.index0 > 0 %}
+
+                    {% for value in option.values %}
+                      <input type="radio" id="Option{{ option.position }}-{{ value }}" name="options[{{ option.name }}]" value="{{ value }}"{% if option.selected_value == value %} checked{% endif %}>
+                      <label for="Option{{ option.position }}-{{ value }}">{{ value }}</label>
+                    {% endfor %}
+
+                  {% else %}
+
+                    <label class="col" for="Option{{ option.position }}">
+                      {{ option.name }}
+                    </label>
+
+                    <select
+                      class="custom-select col-4"
+                      id="Option{{ option.position }}"
+                      name="options[{{ option.name | escape }}]">
+                      {% for value in option.values %}
+                        <option
+                          value="{{ value | escape }}"
+                          {% if option.selected_value == value %}selected="selected"{% endif %}>
+                        {{ value }}
+                        </option>
+                      {% endfor %}
+                    </select>
+
+                  {% endif %}
+                </div>
+              {% endfor %}
+
+              <!-- Størrelsesguide knap -->
+              <div class="col">
+                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#sizeModal">
+                  <u>Hvad er min størrelse?</u>
+                </button>
+              </div>
+            {%- comment -%} End of product variant selectors {%- endcomment -%}
+            {% endif %}
             
+            {%- comment -%}           
+            {% if product.has_only_default_variant %}
+            <input name="id" value="{{ product.variants.first.id }}" type="hidden">
+            
+            {% else %}
+            {% for option in product.options_with_values %}
+              <div class="js">
+                {% if forloop.index0 > 0 %}
+                  {% for value in option.values %}
+                    <input type="radio" id="Option{{ option.position }}-{{ value }}" name="options[{{ option.name }}]" value="{{ value }}"{% if option.selected_value == value %} checked{% endif %}>
+                    <label for="Option{{ option.position }}-{{ value }}">{{ value }}</label>
+                  {% endfor %}
+                  
+                  <label class="input-group-text" for="Option{{ option.position }}">
+                    {{ option.name }}
+                  </label>
 
-
+                  <select
+                    class="custom-select"
+                    id="Option{{ option.position }}"
+                    name="options[{{ option.name | escape }}]">
+                    {% for value in option.values %}
+                      <option
+                        value="{{ value | escape }}"
+                        {% if option.selected_value == value %}selected="selected"{% endif %}>
+                        {{ value }}
+                      </option>
+                    {% endfor %}
+                  </select>
+                {% endif %}
+              </div>
+            {% endfor %}
+            <p class="text-center">Vælg størrelse</p>
               <div class="btn-group btn-group-toggle" data-toggle="buttons">
                 {% for variant in product.variants %}
 
@@ -104,21 +193,30 @@
 
                 {% endfor %}
               </div>
+              <div class="col">
+                <button type="button" class="btn btn-link" data-toggle="modal" data-target="#sizeModal">
+                  <u>Hvad er min størrelse?</u>
+                </button>
+              </div>
+            {% endif %}
+            {%- endcomment -%}
 
-            <button
-            type="submit"
-            name="add"
-            class="btn btn-primary mt-2"
-            data-submit-button
-            {% unless current_variant.available %}disabled="disabled"{% endunless %}>
-            <span data-submit-button-text>
-              {% if current_variant.available %}
-                + {{ 'products.product.add_to_cart' | t }}
-              {% else %}
-                {{ 'products.product.sold_out' | t }}
-              {% endif %}
-            </span>
-          </button>
+            <div class="col">
+              <button
+              type="submit"
+              name="add"
+              class="btn btn-primary mt-2"
+              data-submit-button
+              {% unless current_variant.available %}disabled="disabled"{% endunless %}>
+              <span data-submit-button-text>
+                {% if current_variant.available %}
+                  + {{ 'products.product.add_to_cart' | t }}
+                {% else %}
+                  {{ 'products.product.sold_out' | t }}
+                {% endif %}
+              </span>
+            </button>
+            </div>
 
             <noscript>
               <select name="id">
@@ -133,12 +231,60 @@
               </select>
             </noscript>
 
+          <!-- .form-group -->
           </div>
 
+          
+          
         </div>
-
-
         {% endform %}
+
+        <ul class="list-group list-group-horizontal mt-2 d-flex justify-content-around">
+            <li class="list-inline-item d-flex align-items-center">
+              <span class="product-payment__icon">
+                {% include 'icon-sikker-betaling' %}
+              </span>
+              <span class="small">
+                Sikker betaling
+              </span>
+            </li>
+            <li class="list-inline-item d-flex align-items-center">
+              <span class="product-payment__icon">
+                {% include 'icon-hurtig-levering' %}
+              </span>
+              <span class="small">
+                Hurtig levering
+              </span>
+            </li>
+            <li class="list-inline-item d-flex align-items-center">
+              <span class="product-payment__icon">
+                {% include 'icon-gratis-levering' %}
+              </span>
+              <span class="small">
+                Gratis levering
+              </span>
+            </li>
+        </ul>
+        <p class="text-center mt-3"><b>Levering med track & trace 1-2 hverdage</b></p>
+      
+      
+        <!-- Størrelsesguide modal -->
+      <div class="modal fade" id="sizeModal" tabindex="-1" role="dialog" aria-labelledby="Størrelse" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="sizeModalCenterTitle">Størrelsesguide</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p class="text-center">All mål er i cm</p>
+              {% include 'icon-size-guide' %}
+            </div>
+          </div>
+        </div>
+      </div>
         <!-- col -->
       </div>
 
@@ -179,22 +325,7 @@
       </div>
     </div>
   </div>
-      
-      
-      <div class="container py-3 py-md-4">
-        <h3 class="text-center">Det siger vores kunder om os</h3>
-        <div class="row">
-          <div class="col">
-            <!-- TrustBox widget - Carousel -->
-            <div class="trustpilot-widget" data-locale="da-DK" data-template-id="53aa8912dec7e10d38f59f36" data-businessunit-id="56b8552e0000ff000588a2a7" data-style-height="130px" data-style-width="100%" data-theme="light" data-stars="1,2,3,4,5">
-              <a href="https://dk.trustpilot.com/review/barberskabet.dk" target="_blank" rel="noopener">Trustpilot</a>
-            </div>
-            <!-- End TrustBox widget -->
-          </div>
-        </div>
-      </div>
-
-    </section>
+</section>
 
 {% schema %}
   {
@@ -204,6 +335,11 @@
         "type": "text",
         "id": "title",
         "label": "Heading"
+      },
+      {
+        "type": "text",
+        "id": "price",
+        "label": "Overwrite price"
       },
       {
         "type": "textarea",
