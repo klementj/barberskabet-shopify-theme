@@ -17,6 +17,7 @@ npm-debug.log
 .env.*
 config.yml
 config-PRIVATE.yml
+config-COMPANY.yml
 
 # Compiled source #
 ###################
