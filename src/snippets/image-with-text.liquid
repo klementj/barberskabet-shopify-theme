@@ -1,4 +1,4 @@
-<div style="color: {{ section.settings.text-color }}" class="banner-image-grafen jumbotron-fluid lazyload d-flex justify-content-center py-3 py-md-4"
+<div style="color: {{ section.settings.text-color }}" class="banner-image--hidden jumbotron-fluid lazyload d-flex justify-content-center py-3 py-md-4"
   {% if section.settings.overlay_color != 'rgba(0,0,0,0)' %}
     data-bgprefix="linear-gradient({{ section.settings.overlay_color |
     color_modify: 'alpha', 0.5}}, {{ section.settings.overlay_color |
