@@ -218,5 +218,9 @@ register('product', {
 // This takes care of attaching jquery-zoom to the main image element, firing
 // when the image loads.
 $('.responsive-image__image').on('load', function() {
+  const isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+  if (isMobile) {
+    return
+  }
   $('.product-image .responsive-image__wrapper:visible').zoom();
 });
