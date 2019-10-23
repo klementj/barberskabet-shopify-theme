@@ -1,0 +1,150 @@
+<div style="background-color: {{ section.settings.bg-color }}; color: {{ section.settings.text-color }}; fill: {{ section.settings.icon-color }}; stroke: {{ section.settings.icon-color }}">
+<section class="container py-3 py-md-4">
+  <!-- Heading -->
+  {% if section.settings.heading != blank %}
+    <h2 class="text-center mb-3">{{ section.settings.heading }}</h2>
+  {% endif %}
+
+  <div class="row">
+    <!-- Hook 1 -->
+    <article class="col-md-4" >
+
+      <!-- Hook Icon -->
+      <div class="px-5 px-md-4">
+        {% include 'icon-trial' %}
+      </div>
+      
+      <!-- Hook Heading -->
+      {% if section.settings.heading_1 != blank %}
+      <h3 class="text-center">{{ section.settings.heading_1 }}</h3>
+      {% endif %}
+
+      <!-- Hook Text -->
+      {% if section.settings.text_1 != blank %}
+        <div class="text-center">{{ section.settings.text_1 }}</div>
+      {% endif %}
+
+    </article>
+    
+    
+    <!-- Hook 2 -->
+    <article class="col-md-4" >
+      
+      <!-- Hook Icon -->
+      <div class="px-5 px-md-4">
+        {% include 'icon-calendar' %}
+      </div>
+      
+      <!-- Hook Heading -->
+      {% if section.settings.heading_2 != blank %}
+      <h3 class="text-center">{{ section.settings.heading_2 }}</h3>
+      {% endif %}
+      
+      <!-- Hook Text -->
+      {% if section.settings.text_2 != blank %}
+        <div class="text-center">{{ section.settings.text_2 }}</div>
+      {% endif %}
+
+    </article>
+    
+    <!-- Hook 3 -->
+    <article class="col-md-4" >
+      
+      <!-- Hook Icon -->
+      <div class="px-5 px-md-4">
+        {% include 'icon-shackle' %}
+      </div>
+      
+      <!-- Hook Heading -->
+      {% if section.settings.heading_3 != blank %}
+      <h3 class="text-center">{{ section.settings.heading_3 }}</h3>
+      {% endif %}
+
+      <!-- Hook Text -->
+      {% if section.settings.text_3 != blank %}
+        <div class="text-center">{{ section.settings.text_3 }}</div>
+      {% endif %}
+
+    </article>
+  </div><!-- end row -->
+</section>
+</div>
+
+{% schema %}
+{
+  "name": "Hooks How",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Overskrift",
+      "default": "Hvordan fungerer det?",
+      "placeholder": "Tekst til overskrift"
+    },
+    {
+      "type": "color",
+      "id": "bg-color",
+      "label": "Bagground color",
+      "default": "#01393d"
+    },
+    {
+      "type": "color",
+      "id": "icon-color",
+      "label": "Icon color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text-color",
+      "label": "Text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "heading_1",
+      "label": "Hook overskrift",
+      "default": "Prøv i 2 uger"
+    },
+    {
+      "type": "richtext",
+      "id": "text_1",
+      "label": "Tekst",
+      "default": "<p>Skriv en kort tekst der forklarer jeres hook</p>"
+    },
+
+
+    {
+      "type": "text",
+      "id": "heading_2",
+      "label": "Hook overskrift",
+      "default": "Planlæg dine leveringer"
+    },
+    {
+      "type": "richtext",
+      "id": "text_2",
+      "label": "Tekst",
+      "default": "<p>Skriv en kort tekst der forklarer jeres hook</p>"
+    },
+
+
+    {
+      "type": "text",
+      "id": "heading_3",
+      "label": "Hook overskrift",
+      "default": "Ingen binding"
+    },
+    {
+      "type": "richtext",
+      "id": "text_3",
+      "label": "Tekst",
+      "default": "<p>Skriv en kort tekst der forklarer jeres hook</p>"
+    }
+  ],
+"presets": [
+    {
+      "name": "Hooks-How",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}

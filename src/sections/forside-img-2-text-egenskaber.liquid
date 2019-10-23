@@ -1,0 +1,121 @@
+<div style="background-color: {{ section.settings.bg-color }}; color: {{ section.settings.text-color }} ">  
+  <section class="container py-3 py-md-4" >
+      <div id="section-{{ section.id }}--direction" class="row">
+
+        <!-- Image -->
+        <!-- Laptop Image -->
+        <div class="d-none d-md-block col-md">
+          {% if section.settings.image-laptop != blank %}
+          {% include 'responsive-image' with
+            image: section.settings.image-laptop,
+            img_class: image-with-text__image,
+            max_width: 1140,
+            max_height: 845
+          %}
+          {% else %}
+          {{ 'image' | placeholder_svg_tag: 'img-thumbnail' }}
+          {% endif %}
+        </div>
+        
+        <!-- Mobile image -->
+        <div class="d-md-none col-md">
+          {% if section.settings.image-mobile != blank %}
+          {% include 'responsive-image' with
+            image: section.settings.image-mobile,
+            img_class: image-with-text__image,
+            max_width: 1140,
+            max_height: 845
+          %}
+          {% else %}
+          {{ 'image' | placeholder_svg_tag: 'img-thumbnail' }}
+          {% endif %}
+        </div>
+
+        {%- comment -%}
+        RESOLUTION SWITCHING
+        <picture>
+          <source media="(max-width: 799px)" srcset="{{ section.settings.image-mobile }}">
+          <source media="(min-width: 800px)" srcset="{{ section.settings.image-laptop }}">
+          <img src="{{ section.settings.image-laptop }}" alt="Barberskabets grafentech og modal boxershorts mange egenskaber.">
+        </picture>
+        </div>
+        {%- endcomment -%}
+
+        <!-- Text -->
+        <div class="col-md d-flex flex-column align-items-start justify-content-center">
+          {% if section.settings.title != blank %}
+            <h2>{{ section.settings.title | escape }}</h2>
+          {% endif %}
+          {% if section.settings.text != blank %}
+            <div class="mt-1 mb-2">{{ section.settings.text }}</div>
+          {% endif %}
+          {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+            <a class="btn btn-primary" href="{{ section.settings.button_link }}">
+              {{ section.settings.button_label | escape }}
+            </a>
+          {% endif %}
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+
+{% schema %}
+  {
+    "name": "Boxershorts",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image-laptop",
+        "label": "Image laptop"
+      },
+      {
+        "type": "image_picker",
+        "id": "image-mobile",
+        "label": "Image mobile"
+      },
+      {
+        "type": "color",
+        "id": "bg-color",
+        "label": "Bagground color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "text-color",
+        "label": "Text color",
+        "default": "#000000"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Alle egenskaber"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>1. Svedtransporterende </p>"
+      },
+      {
+        "type": "text",
+        "id": "button_label",
+        "label": "Button label",
+        "default": "Gå til prøvepakke"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Button link"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Boxershorts",
+        "category": "Forside"
+      }
+    ]
+  }
+{% endschema %}

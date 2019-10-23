@@ -1,0 +1,58 @@
+{%- comment -%}
+  This is a required section for the Shopify Theme Store.
+  It is available when you add "Rich text" section on the Theme Editor.
+
+  Theme Store required settings
+  - Heading: title of the rich text section
+  - Text: description of the rich text section
+{%- endcomment -%}
+<div style="background-color: {{ section.settings.bg-color }}; color: {{ section.settings.text-color }}">
+  <section class="container py-3 py-md-4 heading">
+    {%- if section.settings.title != blank -%}
+      <h2 class="text-center">{{ section.settings.title | escape }}</h2>
+    {%- endif -%}
+    {%- if section.settings.text != blank -%}
+      <div class="row mx-auto container-small">
+        <div class="col text-center">
+          {{ section.settings.text }}
+        </div>
+      </div>
+    {%- endif -%}
+  </section>
+</div>
+
+{% schema %}
+  {
+    "name": "Hvorfor blive medlem",
+    "settings": [
+      {
+        "type": "color",
+        "id": "bg-color",
+        "label": "Bagground color",
+        "default": "#01393d"
+      },
+      {
+        "type": "color",
+        "id": "text-color",
+        "label": "Text color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Hvorfor skal du prøve vores grafentech boxershorts?"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>Du skal prøve Barberskabets grafentech boxershorts fordi de består af de revolutionerende materialer grafen og modal, som har både svedtransporterende og antibakterielle egenskaber. Med disse egenskaber sikres du maksimal komfort og hygiejne hver dag. Læs mere nedenfor.</p>"
+      }
+    ],
+    "presets": [{
+        "name": "Hvorfor blive medlem",
+        "category": "Barberblade"
+    }]
+  }
+{% endschema %}

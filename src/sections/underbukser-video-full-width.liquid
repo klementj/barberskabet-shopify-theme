@@ -1,0 +1,24 @@
+<section class="embed-responsive embed-responsive-16by9">                       
+  <iframe class="embed-responsive-item" src="{{ section.settings.video_url }}?background=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+</section>
+
+{% schema %}
+{
+  "name": "Vimeo video",
+  "settings": [
+    {
+      "id": "video_url",
+      "type": "video_url",
+      "label": "Vimeo URL",
+      "accept": ["vimeo"],
+      "default": "https://player.vimeo.com/video/265211292",
+      "info": "Link til vimeo video",
+      "placeholder": "Link til video"
+    }
+  ],
+  "presets": [{
+      "name": "Vimeo full width video",
+      "category": "Underbukser"
+  }]
+}
+{% endschema %}
