@@ -1,3 +1,11 @@
+
+<meta http-equiv="refresh" content="0;URL='/tools/recurring/login'" />
+<div class="wrapper">
+  <header class="section-header page-margin">
+    <h1 class="section-header__center title h2">Vent et øjeblik - du stilles videre...</h1>
+  </header>
+</div>
+
 <div class="container">
 
   <div class="row">
@@ -15,7 +23,12 @@
       <div class="text-center mb-3">
         {{ 'layout.customer.logged_in_as_html' | t: first_name: user_email }} (<a href="/account/logout">{{ 'layout.customer.log_out' | t }}</a>)
       </div>
-
+      
+<!-- Begin ReCharge code -->
+<p id="rc_link_container">
+    <a href="/tools/recurring/login">Administrer dine medlemskaber</a>
+</p>
+<!-- End ReCharge code -->
       <h2>{{ 'customer.orders.title' | t }}</h2>
 
       <div class="mb-3 order-history">

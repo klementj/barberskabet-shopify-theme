@@ -3,13 +3,13 @@
   {%- assign current_variant = product.selected_or_first_available_variant -%}
   {%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
 
-  <!-- .product-container -->
+  <!-- Product .container -->
   <div class="container">
     <div class="d-block d-lg-none">
-        <div class="trustpilot-widget" data-locale="da-DK" data-template-id="5419b6ffb0d04a076446a9af" data-businessunit-id="56b8552e0000ff000588a2a7" data-style-height="20px" data-style-width="100%" data-theme="light" style="position: relative;"><iframe frameborder="0" scrolling="no" title="Customer reviews powered by Trustpilot" src="https://widget.trustpilot.com/trustboxes/5419b6ffb0d04a076446a9af/index.html?templateId=5419b6ffb0d04a076446a9af&amp;businessunitId=56b8552e0000ff000588a2a7#locale=da-DK&amp;styleHeight=20px&amp;styleWidth=100%25&amp;theme=light" style="position: relative; height: 20px; width: 100%; border-style: none; display: block; overflow: hidden;"></iframe></div>
-
-        <!-- Product title -->
-        <h2 class="h5 mt-2 text-center">{{ product.title }}</h2>
+      <!-- Trustpilot widget -->
+      <div class="trustpilot-widget" data-locale="da-DK" data-template-id="5419b6ffb0d04a076446a9af" data-businessunit-id="56b8552e0000ff000588a2a7" data-style-height="20px" data-style-width="100%" data-theme="light" style="position: relative;"><iframe frameborder="0" scrolling="no" title="Customer reviews powered by Trustpilot" src="https://widget.trustpilot.com/trustboxes/5419b6ffb0d04a076446a9af/index.html?templateId=5419b6ffb0d04a076446a9af&amp;businessunitId=56b8552e0000ff000588a2a7#locale=da-DK&amp;styleHeight=20px&amp;styleWidth=100%25&amp;theme=light" style="position: relative; height: 20px; width: 100%; border-style: none; display: block; overflow: hidden;"></iframe></div>
+      <!-- Product title -->
+      <h2 class="h5 mt-2 text-center">{{ product.title }}</h2>
     </div>
 
     <div class="row">
@@ -45,7 +45,7 @@
             </div>
           {% endif %}
 
-          <!-- container -->
+          <!-- .container -->
         </div>
 
         <!-- col -->
@@ -58,35 +58,6 @@
         <!-- Product title -->
         <h2 class="h2 mt-2">{{ product.title }}</h2>
 
-        <!-- Product price -->
-        <div data-price-wrapper>
-          <div class="row">
-            <div class="col">
-              {% if product.compare_at_price_max > product.price %}
-                <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
-                <s data-compare-price>
-                  {% if current_variant.compare_at_price > current_variant.price %}
-                    {{ current_variant.compare_at_price | money }}
-                  {% endif %}
-                </s>
-              {% endif %}
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col h3">
-              <span data-product-price>
-                {% if section.settings.price != blank %}
-                  {{ section.settings.price | money}}
-                {% else %}
-                  {{ current_variant.price | money }}
-                {% endif %}
-              </span>
-            </div>
-            <hr>
-          </div>
-
-        </div>
 
         <!-- Product description -->
         <div class="text-center">
@@ -103,52 +74,64 @@
 
           <div class="form-group">
 
-            {% if product.has_only_default_variant %}
-              <input name="id" data-productid="{{ product.id }}" value="{{ product.variants.first.id }}" type="hidden">
-
-            {% else %}
-              {% for option in product.options_with_values %}
-                <div class="js">
-
-                  {% if forloop.index0 > 0 %}
-
-                    {% for value in option.values %}
-                      <input type="radio" id="Option{{ option.position }}-{{ value }}" name="options[{{ option.name }}]" value="{{ value }}"{% if option.selected_value == value %} checked{% endif %}>
-                      <label for="Option{{ option.position }}-{{ value }}">{{ value }}</label>
-                    {% endfor %}
-
-                  {% else %}
-
-                    <label class="col" for="Option{{ option.position }}">
-                      {{ option.name }}
-                    </label>
-
-                    <select
-                      class="custom-select col-4"
-                      id="Option{{ option.position }}"
-                      name="options[{{ option.name | escape }}]">
-                      {% for value in option.values %}
-                        <option
-                          value="{{ value | escape }}"
-                          {% if option.selected_value == value %}selected="selected"{% endif %}>
-                        {{ value }}
-                        </option>
-                      {% endfor %}
-                    </select>
-
-                  {% endif %}
-                </div>
-              {% endfor %}
+  
+{% if product.options.size > 1 %}
+      <div class="select">
+        <select id="product-select-{{ product.id }}{{ product-form }}" name="id" class="multi_select" data-productid="{{ product.id }}">
+          {% for variant in product.variants %}
+            <option {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %} value="{{ variant.id }}" data-sku="{{ variant.sku }}">{{ variant.title }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    {% elsif product.options.size == 1 and product.variants.size > 1 %}
+      <div class="select">
+        <label>{{ product.options[0] }}</label>
+        <select id="product-select-{{ product.id }}{{ product-form }}" name="id">
+          {% for variant in product.variants %}
+            <option {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %} value="{{ variant.id }}" data-sku="{{ variant.sku }}">{{ variant.title }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    {% else %}
+      <input type="hidden" name="id" value="{{ product.variants.first.id }}" data-productid="{{ product.id }}" />
+    {% endif %}
 
               <!-- Størrelsesguide knap -->
-              <div class="col">
+                {%- comment -%}<div class="col">
                 <button type="button" class="btn btn-link" data-toggle="modal" data-target="#sizeModal">
                   <u>Hvad er min størrelse?</u>
                 </button>
               </div>
-            {%- comment -%} End of product variant selectors {%- endcomment -%}
-            {% endif %}
+           End of product variant selectors {%- endcomment -%}
+        
             
+<!-- Product price -->
+<div data-price-wrapper>
+    <div class="row">
+      <div class="col">
+        {% if product.compare_at_price_max > product.price %}
+          <span class="visually-hidden" data-compare-text>{{ 'products.product.regular_price' | t }}</span>
+          <s data-compare-price>
+            {% if current_variant.compare_at_price > current_variant.price %}
+              {{ current_variant.compare_at_price | money }}
+            {% endif %}
+          </s>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col h3 mb-0 mt-2">
+         39,00 kr.
+        <span data-product-price hidden>
+          {{ current_variant.price | money }}
+        </span>
+      </div>
+      <hr>
+    </div>
+
+  </div>
+
             {%- comment -%}           
             {% if product.has_only_default_variant %}
             <input name="id" data-productid="{{ product.id }}" value="{{ product.variants.first.id }}" type="hidden">
@@ -205,11 +188,13 @@
             {% endif %}
             {%- endcomment -%}
 
+
+            <!-- Knap til kurv -->
             <div class="col">
               <button
               type="submit"
               name="add"
-              class="btn btn-primary mt-2"
+              class="btn btn-primary"
               data-submit-button
               {% unless current_variant.available %}disabled="disabled"{% endunless %}>
               <span data-submit-button-text>
@@ -223,7 +208,7 @@
             </div>
 
             <noscript>
-              <select name="id" data-productid="{{ product.id }}">
+              <select name="id" data-productid="{{ product.id }}" >
                 {% for variant in product.variants %}
                   <option
                     {% if variant == current_variant %}selected="selected"{% endif %}
@@ -243,8 +228,8 @@
         </div>
         {% endform %}
 
-        <ul class="list-group list-group-horizontal mt-2 d-flex justify-content-around">
-            <li class="list-inline-item d-flex align-items-center">
+        <ul class="list-group list-group-horizontal-sm mt-2 d-flex justify-content-around">
+            <li class="list-inline-item d-flex align-items-center mx-auto">
               <span class="product-payment__icon">
                 {% include 'icon-sikker-betaling' %}
               </span>
@@ -252,7 +237,7 @@
                 Sikker betaling
               </span>
             </li>
-            <li class="list-inline-item d-flex align-items-center">
+            <li class="list-inline-item d-flex align-items-center mx-auto">
               <span class="product-payment__icon">
                 {% include 'icon-hurtig-levering' %}
               </span>
@@ -260,7 +245,7 @@
                 Hurtig levering
               </span>
             </li>
-            <li class="list-inline-item d-flex align-items-center">
+            <li class="list-inline-item d-flex align-items-center mx-auto">
               <span class="product-payment__icon">
                 {% include 'icon-gratis-levering' %}
               </span>
@@ -269,7 +254,6 @@
               </span>
             </li>
         </ul>
-        <p class="text-center mt-3"><b>Levering med track & trace 1-2 hverdage</b></p>
       
       
         <!-- Størrelsesguide modal -->
@@ -298,37 +282,6 @@
     <!-- container -->
   </div>
   
-  
-  
-  <div class="container py-3 py-md-4">
-    <h3 class="text-center">Specifikationer</h3>
-    <div class="row">
-      <div class="col-sm-4">
-        <h4>Barberblade</h4>
-        <ul>
-          <li>5 Skarpe skær</li>
-          <li>Ekstra præcisionsblad</li>
-          <li>Aloe vera og Vitamin E</li>
-        </ul>
-      </div>
-      <div class="col-sm-4">
-        <h4>Håndtag</h4>
-        <ul>
-          <li>Ergonomisk metalhåndtag</li>
-          <li>Tekstureret gummigreb</li>
-          <li>Afbalanceret vægt</li>
-        </ul>
-      </div>
-      <div class="col-sm-4">
-        <h4>Holder</h4>
-        <ul>
-          <li>Lavet af 100% silikone</li>
-          <li>Beskytter din skraber</li>
-          <li>Godt at have med på rejsen</li>
-        </ul>
-      </div>
-    </div>
-  </div>
 </section>
 
 {% schema %}
@@ -339,11 +292,6 @@
         "type": "text",
         "id": "title",
         "label": "Heading"
-      },
-      {
-        "type": "text",
-        "id": "price",
-        "label": "Overwrite price"
       },
       {
         "type": "textarea",
