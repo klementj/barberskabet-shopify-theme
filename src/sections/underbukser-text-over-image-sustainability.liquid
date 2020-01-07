@@ -15,8 +15,8 @@
   <div style="color: {{ section.settings.text-color }}" class="banner-image--hidden jumbotron-fluid lazyload d-flex justify-content-center pt-2 py-md-4"
     {% if section.settings.overlay_color != 'rgba(0,0,0,0)' %}
       data-bgprefix="linear-gradient({{ section.settings.overlay_color |
-      color_modify: 'alpha', 0.5}}, {{ section.settings.overlay_color |
-      color_modify: 'alpha', 0.5}}), "
+      color_modify: 'alpha', 0.1}}, {{ section.settings.overlay_color |
+      color_modify: 'alpha', 0.1}}), "
     {% else %}
       data-bgprefix="linear-gradient({{ section.settings.overlay_color}}, {{
                     section.settings.overlay_color}}), "
