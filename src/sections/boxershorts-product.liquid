@@ -7,7 +7,7 @@
   <div class="container">
     <div class="d-block d-lg-none">
       <!-- Trustpilot widget -->
-      <div class="trustpilot-widget" data-locale="da-DK" data-template-id="5419b6ffb0d04a076446a9af" data-businessunit-id="56b8552e0000ff000588a2a7" data-style-height="20px" data-style-width="100%" data-theme="light" style="position: relative;"><iframe frameborder="0" scrolling="no" title="Customer reviews powered by Trustpilot" src="https://widget.trustpilot.com/trustboxes/5419b6ffb0d04a076446a9af/index.html?templateId=5419b6ffb0d04a076446a9af&amp;businessunitId=56b8552e0000ff000588a2a7#locale=da-DK&amp;styleHeight=20px&amp;styleWidth=100%25&amp;theme=light" style="position: relative; height: 20px; width: 100%; border-style: none; display: block; overflow: hidden;"></iframe></div>
+      <div class="trustpilot-widget" data-locale="da-DK" data-template-id="5419b6ffb0d04a076446a9af" data-businessunit-id="56b8552e0000ff000588a2a7" data-style-height="25px" data-style-width="100%" data-theme="light" style="position: relative;"><iframe frameborder="0" scrolling="no" title="Customer reviews powered by Trustpilot" src="https://widget.trustpilot.com/trustboxes/5419b6ffb0d04a076446a9af/index.html?templateId=5419b6ffb0d04a076446a9af&amp;businessunitId=56b8552e0000ff000588a2a7#locale=da-DK&amp;styleHeight=20px&amp;styleWidth=100%25&amp;theme=light" style="position: relative; height: 20px; width: 100%; border-style: none; display: block; overflow: hidden;"></iframe></div>
       <!-- Product title -->
       <h2 class="h5 mt-2 text-center">{{ product.title }}</h2>
     </div>
@@ -70,12 +70,10 @@
 <!-- End ReCharge code -->
 
 
-        <div class="py-2 text-center">
-
-          <div class="form-group">
-
+  <div class="py-2 text-center">
+    <div class="form-group">
   
-{% if product.options.size > 1 %}
+      {% if product.options.size > 1 %}
       <div class="select">
         <select id="product-select-{{ product.id }}{{ product-form }}" name="id" class="multi_select" data-productid="{{ product.id }}">
           {% for variant in product.variants %}
@@ -83,18 +81,27 @@
           {% endfor %}
         </select>
       </div>
-    {% elsif product.options.size == 1 and product.variants.size > 1 %}
+
+      {% elsif product.options.size == 1 and product.variants.size > 1 %}
       <div class="select">
         <label>{{ product.options[0] }}</label>
         <select id="product-select-{{ product.id }}{{ product-form }}" name="id">
           {% for variant in product.variants %}
-            <option {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %} value="{{ variant.id }}" data-sku="{{ variant.sku }}">{{ variant.title }}</option>
+            <option 
+              {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %} 
+              value="{{ variant.id }}" 
+              data-sku="{{ variant.sku }}" 
+              {% if variant.inventory_policy == "deny" and variant.inventory_quantity <= 0 %}disabled{% endif %}
+              >
+              {{ variant.title }}
+            </option>
           {% endfor %}
         </select>
       </div>
-    {% else %}
+      
+      {% else %}
       <input type="hidden" name="id" value="{{ product.variants.first.id }}" data-productid="{{ product.id }}" />
-    {% endif %}
+      {% endif %}
 
               <!-- Størrelsesguide knap -->
               <div class="col">
