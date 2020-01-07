@@ -1,3 +1,6 @@
+<!-- Begin ReCharge code -->
+{% include 'subscription-cart-footer' %}
+<!-- End ReCharge code -->
 <div class="container">
   {% if cart.item_count > 0 %}
     <h2 class="text-center">{{ 'cart.general.title' | t }}</h2>
@@ -45,21 +48,7 @@
                     {% endunless %}
   
                     {%- assign property_size = item.properties | size -%}
-  
-                    {% if property_size > 0 %}
-                      {% for p in item.properties %}
-                        {% unless p.last == blank %}
-                          {{ p.first }}:
-  
-                          {% if p.last contains '/uploads/' %}
-                            <a href="{{ p.last }}">{{ p.last | split: '/' | last }}</a>
-                          {% else %}
-                            {{ p.last }}
-                          {% endif %}
-  
-                        {% endunless %}
-                      {% endfor %}
-                    {% endif %}
+                    
   
                     <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">
                       <small class="nav-link">{{ 'cart.general.remove' | t }}</small>
@@ -164,9 +153,17 @@
           {% endif %}
           <p>{{ 'cart.general.subtotal' | t }}</p>
           <p>{{ 'cart.general.shipping_at_checkout' | t }}</p>
+          <!-- Indsættelse af betingelser -->
+          <p>Læs vores handelsbetingelser ved at klikke <a href="https://barberskabet.dk/pages/handelsbetingelser" target="_blank"><strong>her</strong></a></p>
+          <p style="float: none; text-align: right; clear: both; margin: 10px 0;">
+  <input style="float:none; vertical-align: middle;" type="checkbox" id="agree" />
+  <label style="display:inline; float:none" for="agree">
+    Jeg accepterer <a href="https://barberskabet.dk/pages/handelsbetingelser" target="_blank">handelsbetingelserne.</a>
+  </label>
+</p>
+<!-- end af betingelser -->
           <button class="btn btn-primary" type="submit" name="update" value="">{{ 'cart.general.update' | t }}</button>
           <button class="btn btn-primary" type="submit" name="checkout" class="button" value="">{{ 'cart.general.checkout' | t }}</button>
-
         </div>
       </div>
 

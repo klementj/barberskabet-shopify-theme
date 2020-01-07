@@ -64,7 +64,11 @@ was loading product.js on the index page, resulting in errors.
 
       <div>
 
-        <form class="form-group" action="/cart/add" method="post" enctype="multipart/form-data">
+        <form class="form-group" action="/cart/add" data-productid="{{ product.id }}" method="post" enctype="multipart/form-data">
+<!-- Begin ReCharge code -->
+{% if product.available %}{% include 'subscription-product' %}{% endif %}
+<!-- End ReCharge code -->
+
           {% unless product.has_only_default_variant %}
             {% for option in product.options_with_values %}
               <div class="selector-wrapper js">
@@ -88,7 +92,7 @@ was loading product.js on the index page, resulting in errors.
             {% endfor %}
           {% endunless %}
 
-          <select name="id" class="no-js" data-product-select>
+          <select name="id" data-productid="{{ product.id }}" class="no-js" data-product-select>
             {% for variant in product.variants %}
               <option
                 {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}

@@ -9,8 +9,7 @@
     },
     "404": {
       "title": "404 Siden findes ikke",
-      "subtext_html":
-        "Siden du leder efter findes ikke. Klik <a href=\"/collections/all\">her</a> for at fortsætte med at handle."
+      "subtext_html": "Siden du leder efter findes ikke. Klik <a href=\"https:\/\/barberskabet.dk\">her<\/a> for at gå til forsiden."
     },
     "password_page": {
       "opening_soon": "Åbner Snart",
@@ -24,8 +23,7 @@
       "signup_form_email_placeholder": "Din email",
       "signup_form_submit": "Send",
       "signup_form_success": "Vi sender dig en email lige inden vi åbner!",
-      "admin_link_html":
-        "Ejer du denne butik? <a href=\"/admin\">Log ind her</a>",
+      "admin_link_html": "Ejer du denne butik? <a href=\"\/admin\">Log ind her<\/a>",
       "password_link": "Åben ved brug af adgangskode",
       "powered_by_shopify_html": "Denne butik vil blive drevet af {{ shopify }}"
     },
@@ -51,8 +49,7 @@
         "one": "{{ count }} resultat for \"{{ terms }}\"",
         "other": "{{ count }} resultat for \"{{ terms }}\""
       },
-      "no_results_html":
-        "Prøv et andet søgeord eller gå tilbage til <a href=\"/\">hjemmesiden</a>."
+      "no_results_html": "Prøv et andet søgeord eller gå tilbage til <a href=\"\/\">hjemmesiden<\/a>."
     },
     "newsletter_form": {
       "newsletter_email": "Deltag i vores mailingliste",
@@ -76,10 +73,8 @@
       "email": "Email",
       "message": "Besked",
       "post": "Skriv kommentar",
-      "moderated":
-        "Bemærk venligst at, kommentarer skal godkendes inden de vises",
-      "success_moderated":
-        "Din kommentar er modtaget. Vi offentliggør den inden længe.",
+      "moderated": "Bemærk venligst at, kommentarer skal godkendes inden de vises",
+      "success_moderated": "Din kommentar er modtaget. Vi offentliggør den inden længe.",
       "success": "Din kommentar er modtaget! Mange tak!",
       "with_count": {
         "one": "{{ count }} kommentar",
@@ -95,13 +90,13 @@
       "title": "Indkøbskurv",
       "remove": "Fjern",
       "note": "Specielle instruktioner for sælger",
-      "subtotal": "Sub total",
-      "shipping_at_checkout": "Forsendelse og skatter bliver beregnet ved betaling",
+      "subtotal": " ",
+      "shipping_at_checkout": "Din levering er gratis",
       "update": "Opdater Kurv",
       "checkout": "Gå til betaling",
       "empty": "Din kurv er i øjeblikket tom.",
-      "cookies_required": "Slå cookies til for at bruge indkøbskurven",
-      "continue_browsing_html": "Fortsæt med at handle <a href=\"/collections/all\">her</a>.",
+      "cookies_required": " ",
+      "continue_browsing_html": "Gå til forsiden <a href=\"https:\/\/barberskabet.dk\">her<\/a>.",
       "item_quantity": "Produkt antal",
       "savings": "Du sparer"
     },
@@ -127,23 +122,22 @@
       "phone": "Telefonnummer",
       "message": "Besked",
       "send": "Send",
-      "post_success":
-        "Tak for din henvendelse. Vi vender tilbage hurtigst muligt"
+      "post_success": "Tak for din henvendelse. Vi vender tilbage hurtigst muligt"
     }
   },
   "customer": {
     "account": {
-      "title": "Min Konto",
-      "details": "Konto Detaljer",
+      "title": "Min Profil",
+      "details": "Profil Detaljer",
       "view_addresses": "Vis Adresser",
-      "return": "Tilbage til Konto Detaljer"
+      "return": "Tilbage til profil detaljer"
     },
     "activate_account": {
-      "title": "Aktiver Konto",
-      "subtext": "Opret din adgangskode for at aktivere din konto.",
+      "title": "Aktiver Profil",
+      "subtext": "Opret din adgangskode for at aktivere din profil.",
       "password": "Adgangskode",
       "password_confirm": "Bekræft Adgangskode",
-      "submit": "Aktiver Konto",
+      "submit": "Aktiver profil",
       "cancel": "Afslå Invitation"
     },
     "addresses": {
@@ -170,7 +164,7 @@
       "delete_confirm": "Er du sikker på du vil slette denne adresse?"
     },
     "login": {
-      "title": "Login",
+      "title": "Log ind",
       "email": "Email",
       "password": "Adgangskode",
       "forgot_password": "Glemt din adgangskode?",
@@ -217,9 +211,8 @@
       "email": "Email",
       "submit": "Send",
       "cancel": "Annuller",
-      "subtext": "Vil vil sende dig en email for at nulstille din adgangskode.",
-      "success":
-        "Vi har sendt dig en email med et link hvor du kan opdatere din adgangskode."
+      "subtext": "Vi sender dig en email for at nulstille din adgangskode.",
+      "success": "Vi har sendt dig en email med et link hvor du kan opdatere din adgangskode."
     },
     "reset_password": {
       "title": "Nulstil din adgangskode",
@@ -229,7 +222,7 @@
       "submit": "Nulstil Adgangskode"
     },
     "register": {
-      "title": "Opret Konto",
+      "title": "Opret Profil",
       "first_name": "Fornavn",
       "last_name": "Efternavn",
       "email": "Email",
@@ -241,13 +234,11 @@
   "homepage": {
     "onboarding": {
       "blog_title": "Dit indlægs titel",
-      "blog_excerpt":
-        "Din butik har endnu ikke offentliggjort nogen blogindlæg. En blog kan bruges til at tale om nye produktlanceringer, tips eller andre nyheder, du vil dele med dine kunder. Du kan tjekke Shopify's e-handelsblog for inspiration og rådgivning til din egen butik og blog.",
+      "blog_excerpt": "Din butik har endnu ikke offentliggjort nogen blogindlæg. En blog kan bruges til at tale om nye produktlanceringer, tips eller andre nyheder, du vil dele med dine kunder. Du kan tjekke Shopify's e-handelsblog for inspiration og rådgivning til din egen butik og blog.",
       "blog_author": "Forfatternavn",
       "product_title": "Produkt Titel Eksempel",
       "collection_title": "Samling Titel Eksempel",
-      "no_content":
-        "Denne afdeling indeholder i øjeblikket ikke noget indhold. Tilføj indhold til denne afdeling ved at bruge sidebaren."
+      "no_content": "Denne afdeling indeholder i øjeblikket ikke noget indhold. Tilføj indhold til denne afdeling ved at bruge sidebaren."
     }
   },
   "layout": {
@@ -259,11 +250,11 @@
       }
     },
     "customer": {
-      "account": "Konto",
+      "account": "Profil",
       "logged_in_as_html": "Logget ind som {{ first_name }}",
       "log_out": "Log ud",
       "log_in": "Log ind",
-      "create_account": "Opret konto"
+      "create_account": "Opret profil"
     },
     "footer": {
       "social_platform": "{{ name }} på {{ platform }}",
@@ -300,5 +291,28 @@
   },
   "date_formats": {
     "month_day_year": "%d. %B, %Y"
+  },
+  "shopify": {
+    "checkout": {
+      "order_summary": {
+        "shipping_default_value": "Gratis"
+      },
+      "customer_account": {
+        "have_an_account_label": "Har du allerede en profil?"
+      }
+    },
+    "page_titles": {
+      "create_account": "Opret profil",
+      "account": "Profil",
+      "reset_account": "Nulstil profil"
+    },
+    "errors": {
+      "reset_password_html": "Denne e-mailadresse er allerede knyttet til en profil. Hvis denne profil er din, kan du <a href=\"\/account\/login#recover\">nulstille din adgangskode<\/a>"
+    },
+    "notices": {
+      "customer": {
+        "no_account_found": "Ingen profil fundet med denne e-mail."
+      }
+    }
   }
 }

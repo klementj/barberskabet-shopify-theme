@@ -64,48 +64,44 @@
           {{ product.description }}
         </div>
 
-        {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
+        {% form 'product', product, data-productid: product.id, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
+<!-- Begin ReCharge code -->
+{% if product.available %}{% include 'subscription-product' %}{% endif %}
+<!-- End ReCharge code -->
+
 
         <div class="py-2 text-center">
 
           <div class="form-group">
 
-            {% if product.has_only_default_variant %}
-              <input name="id" value="{{ product.variants.first.id }}" type="hidden">
-
-            {% else %}
-              {% for option in product.options_with_values %}
-                <div class="js">
-
-                  {% if forloop.index0 > 0 %}
-
-                    {% for value in option.values %}
-                      <input type="radio" id="Option{{ option.position }}-{{ value }}" name="options[{{ option.name }}]" value="{{ value }}"{% if option.selected_value == value %} checked{% endif %}>
-                      <label for="Option{{ option.position }}-{{ value }}">{{ value }}</label>
-                    {% endfor %}
-
-                  {% else %}
-
-                    <label class="col" for="Option{{ option.position }}">
-                      {{ option.name }}
-                    </label>
-
-                    <select
-                      class="custom-select col-4"
-                      id="Option{{ option.position }}"
-                      name="options[{{ option.name | escape }}]">
-                      {% for value in option.values %}
-                        <option
-                          value="{{ value | escape }}"
-                          {% if option.selected_value == value %}selected="selected"{% endif %}>
-                        {{ value }}
-                        </option>
-                      {% endfor %}
-                    </select>
-
-                  {% endif %}
-                </div>
-              {% endfor %}
+  
+{% if product.options.size > 1 %}
+      <div class="select">
+        <select id="product-select-{{ product.id }}{{ product-form }}" name="id" class="multi_select" data-productid="{{ product.id }}">
+          {% for variant in product.variants %}
+            <option {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %} value="{{ variant.id }}" data-sku="{{ variant.sku }}">{{ variant.title }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    {% elsif product.options.size == 1 and product.variants.size > 1 %}
+      <div class="select">
+        <label>{{ product.options[0] }}</label>
+        <select id="product-select-{{ product.id }}{{ product-form }}" name="id">
+          {% for variant in product.variants %}
+            <option 
+              {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %} 
+              value="{{ variant.id }}" 
+              data-sku="{{ variant.sku }}" 
+              {% if variant.inventory_policy == "deny" and variant.inventory_quantity <= 0 %}disabled{% endif %}
+              >
+              {{ variant.title }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+    {% else %}
+      <input type="hidden" name="id" value="{{ product.variants.first.id }}" data-productid="{{ product.id }}" />
+    {% endif %}
 
               <!-- Størrelsesguide knap -->
               <div class="col">
@@ -114,7 +110,7 @@
                 </button>
               </div>
             {%- comment -%} End of product variant selectors {%- endcomment -%}
-            {% endif %}
+        
             
 <!-- Product price -->
 <div data-price-wrapper>
@@ -133,7 +129,7 @@
 
     <div class="row">
       <div class="col h3 mb-0 mt-2">
-        SKRIV PRIS HER
+        SKRIV PRIS HER (39,00 kr.)
         <span data-product-price hidden>
           {{ current_variant.price | money }}
         </span>
@@ -145,7 +141,7 @@
 
             {%- comment -%}           
             {% if product.has_only_default_variant %}
-            <input name="id" value="{{ product.variants.first.id }}" type="hidden">
+            <input name="id" data-productid="{{ product.id }}" value="{{ product.variants.first.id }}" type="hidden">
             
             {% else %}
             {% for option in product.options_with_values %}
@@ -219,7 +215,7 @@
             </div>
 
             <noscript>
-              <select name="id">
+              <select name="id" data-productid="{{ product.id }}" >
                 {% for variant in product.variants %}
                   <option
                     {% if variant == current_variant %}selected="selected"{% endif %}

@@ -93,14 +93,18 @@
           {{ product.description }}
         </div>
 
-        {% form 'product', product, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
+        {% form 'product', product, data-productid: product.id, data-product-form: '', data-product-handle: product.handle, data-enable-history-state: 'true' %}
+<!-- Begin ReCharge code -->
+{% if product.available %}{% include 'subscription-product' %}{% endif %}
+<!-- End ReCharge code -->
+
 
         <div class="py-2 text-center">
 
           <div class="form-group">
 
             {% if product.has_only_default_variant %}
-              <input name="id" value="{{ product.variants.first.id }}" type="hidden">
+              <input name="id" data-productid="{{ product.id }}" value="{{ product.variants.first.id }}" type="hidden">
 
             {% else %}
               {% for option in product.options_with_values %}
@@ -147,7 +151,7 @@
             
             {%- comment -%}           
             {% if product.has_only_default_variant %}
-            <input name="id" value="{{ product.variants.first.id }}" type="hidden">
+            <input name="id" data-productid="{{ product.id }}" value="{{ product.variants.first.id }}" type="hidden">
             
             {% else %}
             {% for option in product.options_with_values %}
@@ -219,7 +223,7 @@
             </div>
 
             <noscript>
-              <select name="id">
+              <select name="id" data-productid="{{ product.id }}">
                 {% for variant in product.variants %}
                   <option
                     {% if variant == current_variant %}selected="selected"{% endif %}
