@@ -88,7 +88,14 @@
         <label>{{ product.options[0] }}</label>
         <select id="product-select-{{ product.id }}{{ product-form }}" name="id">
           {% for variant in product.variants %}
-            <option {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %} value="{{ variant.id }}" data-sku="{{ variant.sku }}">{{ variant.title }}</option>
+            <option 
+              {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %} 
+              value="{{ variant.id }}" 
+              data-sku="{{ variant.sku }}" 
+              {% if variant.inventory_policy == "deny" and variant.inventory_quantity <= 0 %}disabled{% endif %}
+              >
+              {{ variant.title }}
+            </option>
           {% endfor %}
         </select>
       </div>
