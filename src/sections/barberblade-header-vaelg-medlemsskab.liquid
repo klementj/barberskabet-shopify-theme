@@ -9,7 +9,7 @@
 <div style="background-color: {{ section.settings.bg-color }}; color: {{ section.settings.text-color }}">
   <section class="container py-3 py-md-4 heading">
     {%- if section.settings.title != blank -%}
-      <h2 class="text-center">{{ section.settings.title | escape }}</h2>
+      <h2 class="text-center" id ="vælg">{{ section.settings.title | escape }}</h2>
     {%- endif -%}
     {%- if section.settings.text != blank -%}
       <div class="row mx-auto container-small">
@@ -23,7 +23,7 @@
 
 {% schema %}
   {
-    "name": "Vælg medlemsskab",
+    "name": "Vælg medlemsskab", 
     "settings": [
       {
         "type": "color",
