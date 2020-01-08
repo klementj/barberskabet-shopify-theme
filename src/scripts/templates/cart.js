@@ -33,8 +33,8 @@ $('input').change(function() {
 function updateCartTotals(thisObj, itemPrice, quantity, subtotal) {
   const itemTotal = ((itemPrice * quantity) / 100).toFixed(2);
   thisObj.parents().eq(1).children("td.cart-money[data-label='Total']")
-    .text(`$${itemTotal}`);
-  $('#subtotal').text(`$${(subtotal / 100).toFixed(2)}`);
+    .text(`${itemTotal}`);
+  $('#subtotal').text(`${(subtotal / 100).toFixed(2)} kr`);
 }
 
 function removeCartRow(thisObj) {
