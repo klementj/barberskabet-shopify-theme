@@ -35,23 +35,22 @@
   
                     {% if item.image != blank %}
                       <a href="{{ item.url | within: collections.all }}">
-                        {{ item | img_url: '240x240' | img_tag: item.title }}
+                        {{ item | img_url: '200x200' | img_tag: item.title }}
                       </a>
                     {% endif %}
   
                   </td>
                   <td scope="col" class="text-center text-md-left">
-                    <a href="{{ item.url }}">{{ item.product.title }}</a>
-  
+                    <p class="lead">
+                      <a href="{{ item.url }}">{{ item.product.title }}</a>
+                    </p>
                     {% unless item.product.has_only_default_variant %}
-                      <p>{{ item.variant.title }}</p>
+                      <p class="badge badge-primary">{{ item.variant.title }}</p>
                     {% endunless %}
   
                     {%- assign property_size = item.properties | size -%}
-                    
-  
                     <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">
-                      <small class="nav-link">{{ 'cart.general.remove' | t }}</small>
+                      <small>- {{ 'cart.general.remove' | t }}</small>
                     </a>
                   </td>
 
@@ -81,6 +80,7 @@
                             <!-- Antal -->
                             <td data-label="{{ 'cart.label.quantity' | t }}">
                               <input type="number"
+                                     class="form-control"
                                      style="width: 75px;"
                                      name="updates[]"
                                      id="updates_{{ item.key }}"
@@ -114,6 +114,7 @@
                   </td>
                   <td scope="col" class="d-none d-md-table-cell text-center text-md-left" data-label="{{ 'cart.label.quantity' | t }}">
                     <input type="number"
+                           class="form-control"
                            style="width: 75px;"
                            name="updates[]"
                            id="updates_{{ item.key }}"
@@ -151,18 +152,18 @@
           {% if cart.total_discounts > 0 %}
             <p>{{ 'cart.general.savings' | t }} {{ cart.total_discounts | money }}</p>
           {% endif %}
-          <p>{{ 'cart.general.subtotal' | t }}</p>
+          {% comment %} <p>{{ 'cart.general.subtotal' | t }}</p> {% endcomment %}
           <p>{{ 'cart.general.shipping_at_checkout' | t }}</p>
           <!-- Indsættelse af betingelser -->
-          <p>Læs vores handelsbetingelser ved at klikke <a href="https://barberskabet.dk/pages/handelsbetingelser" target="_blank"><strong>her</strong></a></p>
-          <p style="float: none; text-align: right; clear: both; margin: 10px 0;">
-  <input style="float:none; vertical-align: middle;" type="checkbox" id="agree" />
-  <label style="display:inline; float:none" for="agree">
-    Jeg accepterer <a href="https://barberskabet.dk/pages/handelsbetingelser" target="_blank">handelsbetingelserne.</a>
-  </label>
-</p>
-<!-- end af betingelser -->
-          <button class="btn btn-primary" type="submit" name="update" value="">{{ 'cart.general.update' | t }}</button>
+          <p class="text-right">Læs vores handelsbetingelser ved at klikke <a href="https://barberskabet.dk/pages/handelsbetingelser" target="_blank"><strong>her</strong></a></p>
+          <p class="text-right" >
+            <input class="form-check-input" type="checkbox" id="agree" />
+            <label class="form-check-label" for="agree">
+              Jeg accepterer <a href="https://barberskabet.dk/pages/handelsbetingelser" target="_blank"><strong>handelsbetingelserne.</strong></a>
+            </label>
+          </p>
+          <!-- end af betingelser -->
+          {% comment %} <button class="btn btn-secondary-outline" type="submit" name="update" value="">{{ 'cart.general.update' | t }}</button> {% endcomment %}
           <button class="btn btn-primary" type="submit" name="checkout" class="button" value="">{{ 'cart.general.checkout' | t }}</button>
         </div>
       </div>
