@@ -1,5 +1,21 @@
 {% section 'product' %}
 
+{%- unless product.type == '' -%}
+<div class="specifikationer">
+  {%- case product.type -%}
+    {%- when 'BOXERS' -%}
+      {% section 'boxershorts-product-specifikationer' %}
+    {%- when 'SOKKER' -%}
+      {% section 'sokker-product-specifikationer' %}
+    {%- when 'Barberblade (orange)' -%}
+      {% section 'barberblade-product-specifikationer-medlemskab' %}
+    {%- when 'Barberblade (grå)' -%}
+      {% section 'barberblade-product-specs-medlemskab-nytblad' %}
+    {%- else -%}
+  {%- endcase -%}
+{%- endunless -%}
+</div>
+
 {% section 'products-trustpilot' %}
 
 <script type="application/ld+json">
